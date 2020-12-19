@@ -1,0 +1,107 @@
+/* variable definitions */
+* {
+    -fx-primary: #2B2B2B;
+    -fx-secondary: #F1F1F1;
+    -fx-primarytext: #FFFFFF;
+    -fx-secondarytext: #000000;
+    /*
+     * #6893C6 blue color used
+     */
+}
+
+.root {
+    -fx-background-color: -fx-primary;
+    -fx-font-family: ".SF NS Mono";
+}
+
+
+/* Menu bar */
+.menu-bar {
+    -fx-background-color: -fx-primary;
+    -fx-base: -fx-primary;
+    -fx-font-size: 14;
+}
+
+/* Top-level menu itself (selected / hovered) */
+.menu-bar > .container > .menu-button:hover,
+.menu-bar > .container > .menu-button:focused,
+.menu-bar > .container > .menu-button:showing {
+    -fx-background-color: -fx-secondary;
+}
+
+/* Top-level menu's label (selected / hovered) */
+.menu-bar > .container > .menu-button:hover > .label,
+.menu-bar > .container > .menu-button:focused > .label,
+.menu-bar > .container > .menu-button:showing > .label {
+    -fx-text-fill: -fx-secondarytext;
+}
+
+
+/* The item's label (hovered / focused) */
+.menu-item:focused .label, .menu-item:hover .label {
+    -fx-text-fill: -fx-secondarytext;
+}
+
+/* Context menu */
+.context-menu {
+    -fx-background-color: derive(-fx-primary, 25%);
+    -fx-font-size: 14;
+}
+
+.colored-context-menu, .menu-item:focused {
+    -fx-background-color: -fx-secondary;
+    -fx-text-fill: -fx-secondarytext;
+}
+
+
+/* Application */
+.button {
+    -fx-background-color: -fx-primary;
+    -fx-background-radius: 10px;
+    -fx-border-color: -fx-secondary;
+    -fx-border-radius: 10px;
+    -fx-text-fill: -fx-primarytext;
+    -fx-font-size: 18pt;
+}
+
+.button:hover {
+    -fx-background-color: -fx-secondary;
+    -fx-border-color: -fx-secondary;
+    -fx-text-fill: -fx-secondarytext;
+}
+
+.label {
+    -fx-font-family: ".SF NS Mono";
+}
+
+
+.combo-box {
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-secondary;
+    -fx-border-radius: 5px;
+    -fx-text-fill: -fx-primarytext;
+    -fx-prompt-text-fill: -fx-primarytext;
+}
+
+.combo-box-popup .list-view {
+    -fx-font-size: 10pt;
+}
+
+.combo-box .combo-box-popup .list-view, .combo-box .combo-box-popup .list-cell {
+    -fx-background-color: -fx-secondary;
+    -fx-text-fill: -fx-primarytext;
+    -fx-prompt-text-fill: -fx-primarytext;
+}
+
+.combo-box .combo-box-popup .list-cell:hover {
+    -fx-background-color: -fx-secondary;
+    -fx-text-fill: -fx-primarytext;
+    -fx-prompt-text-fill: -fx-primarytext;
+}
+
+
+.combo-box .combo-box-popup .cell:selected {
+    -fx-background-color: -fx-secondary;
+    -fx-text-fill: -fx-primarytext;
+    -fx-prompt-text-fill: -fx-primarytext;
+}
