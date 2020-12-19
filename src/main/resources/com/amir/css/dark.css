@@ -83,10 +83,17 @@
     -fx-font-size: 14;
 }
 
+/*
 .combo-box-base .arrow-button {
-    -fx-background-color: -fx-primary;
+    -fx-background-color: -fx-lightprimary;
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
+}
+*/
+
+.combo-box .combo-box-popup .list-cell:hover {
+    -fx-background-color: -fx-secondary;
+    -fx-text-fill: -fx-secondarytext;
 }
 
 .combo-box .combo-box-popup, .list-view, .list-cell {
@@ -95,4 +102,14 @@
     -fx-border-radius: 10px;
     -fx-font-size: 14;
     -fx-text-fill: -fx-primarytext;
+}
+
+
+/*
+figure out color for the text on the color picker
+ */
+
+/* Removing the custom color option from the color picker*/
+.color-palette .hyperlink, .color-palette .separator {
+    visibility: hidden;
 }

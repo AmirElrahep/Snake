@@ -2,6 +2,7 @@
 * {
     -fx-primary: #F1F1F1;
     -fx-secondary: #2B2B2B;
+    -fx-lightprimary: #DADAD9;
     -fx-primarytext: #000000;
     -fx-secondarytext: #FFFFFF;
 }
@@ -67,6 +68,34 @@
     -fx-text-fill: -fx-secondarytext;
 }
 
-.label{
+.label {
     -fx-font-family: ".SF NS Mono";
+}
+
+.combo-box-base {
+    -fx-background-color: -fx-lightprimary;
+    -fx-border-color: -fx-secondary;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-font-size: 14;
+}
+
+
+
+.combo-box .combo-box-popup .list-cell:hover {
+    -fx-background-color: -fx-secondary;
+    -fx-text-fill: -fx-secondarytext;
+}
+
+.combo-box .combo-box-popup, .list-view, .list-cell {
+    -fx-background-color: -fx-lightprimary;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-font-size: 14;
+    -fx-text-fill: -fx-primarytext;
+}
+
+/* Removing the custom color option from the color picker*/
+.color-palette .hyperlink, .color-palette .separator {
+    visibility: hidden;
 }

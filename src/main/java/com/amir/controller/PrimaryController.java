@@ -7,6 +7,8 @@ import com.amir.App;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -24,39 +26,54 @@ public class PrimaryController implements Initializable {
      * These are the different anchor panes.
      */
     @FXML
-    private AnchorPane paneHome;
+    private AnchorPane pane_home;
     @FXML
-    private AnchorPane paneOptions;
+    private AnchorPane pane_options;
     @FXML
-    private AnchorPane paneGame;
+    private AnchorPane pane_game;
 
 
     /**
      * These are the buttons for the application.
      */
     @FXML
-    private JFXButton btnPlayGame;
+    private JFXButton btn_playGame;
     @FXML
-    private JFXButton btnStartGame;
+    private JFXButton btn_startGame;
 
 
     /**
      * These are the labels for the application.
      */
     @FXML
-    private Label lblSnake;
+    private Label lbl_snake;
     @FXML
-    private Label lblGameOptions;
+    private Label lbl_gameOptions;
     @FXML
-    private Label lblGameMode;
+    private Label lbl_gameMode;
     @FXML
-    private Label lblNumberOfFruit;
+    private Label lbl_numberOfFruit;
     @FXML
-    private Label lblFruitColor;
+    private Label lbl_fruitColor;
     @FXML
-    private Label lblSnakeSpeed;
+    private Label lbl_snakeSpeed;
     @FXML
-    private Label lblSnakeColor;
+    private Label lbl_snakeColor;
+
+
+    /**
+     * These are the comboboxes for the application.
+     */
+    @FXML
+    private ComboBox<String> cbo_gameMode;
+    @FXML
+    private ComboBox<Integer> cbo_numberOfFruit;
+    @FXML
+    private ColorPicker cp_fruitColor;
+    @FXML
+    private ComboBox<String> cbo_snakeSpeed;
+    @FXML
+    private ColorPicker cp_snakeColor;
 
 
     // public methods
@@ -67,13 +84,13 @@ public class PrimaryController implements Initializable {
      * disableMenu method to set the menu visibility to false.
      */
     public void btnPlayGamePressed() {
-        paneHome.setVisible(false);
-        paneOptions.setVisible(true);
+        pane_home.setVisible(false);
+        pane_options.setVisible(true);
     }
 
     public void btnStartGamePressed() {
-        paneOptions.setVisible(false);
-        paneGame.setVisible(true);
+        pane_options.setVisible(false);
+        pane_game.setVisible(true);
         App.disableMenu();
     }
 
@@ -86,19 +103,34 @@ public class PrimaryController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        paneHome.setVisible(true);
-        paneOptions.setVisible(false);
-        paneGame.setVisible(false);
-
+        // setting up the visibility of the panes
+        pane_home.setVisible(true);
+        pane_options.setVisible(false);
+        pane_game.setVisible(false);
 
         // setting colors for labels in the application
-        lblSnake.setTextFill(Color.rgb(104, 147, 198));
-        lblGameOptions.setTextFill(Color.rgb(104, 147, 198));
-        lblGameMode.setTextFill(Color.rgb(104, 147, 198));
-        lblNumberOfFruit.setTextFill(Color.rgb(104, 147, 198));
-        lblFruitColor.setTextFill(Color.rgb(104, 147, 198));
-        lblSnakeSpeed.setTextFill(Color.rgb(104, 147, 198));
-        lblSnakeColor.setTextFill(Color.rgb(104, 147, 198));
+        lbl_snake.setTextFill(Color.rgb(104, 147, 198));
+        lbl_gameOptions.setTextFill(Color.rgb(104, 147, 198));
+        lbl_gameMode.setTextFill(Color.rgb(104, 147, 198));
+        lbl_numberOfFruit.setTextFill(Color.rgb(104, 147, 198));
+        lbl_fruitColor.setTextFill(Color.rgb(104, 147, 198));
+        lbl_snakeSpeed.setTextFill(Color.rgb(104, 147, 198));
+        lbl_snakeColor.setTextFill(Color.rgb(104, 147, 198));
+
+
+        // setting up comboboxes choices and default selections
+        cbo_gameMode.getItems().addAll("Normal", "Walls", "Free Play");
+        cbo_gameMode.setValue("Normal");
+
+        cbo_numberOfFruit.getItems().addAll(1, 3, 5);
+        cbo_numberOfFruit.setValue(1);
+
+        cp_fruitColor.setValue(Color.ORANGERED);
+
+        cbo_snakeSpeed.getItems().addAll("Slow", "Normal", "Fast");
+        cbo_snakeSpeed.setValue("Normal");
+
+        cp_snakeColor.setValue(Color.DARKGREEN);
     }
 
 }
