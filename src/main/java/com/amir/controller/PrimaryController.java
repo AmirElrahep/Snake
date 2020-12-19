@@ -63,7 +63,8 @@ public class PrimaryController implements Initializable {
 
     /**
      * These are the methods when the Play Game or Start Game buttons are pressed. Sets the current pane visibility
-     * to false and sets the corresponding pane's visibility to true.
+     * to false and sets the corresponding pane's visibility to true. The btnStartGamePressed method calls the
+     * disableMenu method to set the menu visibility to false.
      */
     public void btnPlayGamePressed() {
         paneHome.setVisible(false);
@@ -73,9 +74,7 @@ public class PrimaryController implements Initializable {
     public void btnStartGamePressed() {
         paneOptions.setVisible(false);
         paneGame.setVisible(true);
-        App app = new App();
-        app.menuBar.setVisible(false);
-        app.disableMenu();
+        App.disableMenu();
     }
 
 
