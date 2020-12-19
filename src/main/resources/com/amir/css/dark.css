@@ -2,6 +2,7 @@
 * {
     -fx-primary: #2B2B2B;
     -fx-secondary: #F1F1F1;
+    -fx-lightprimary: #333333;
     -fx-primarytext: #FFFFFF;
     -fx-secondarytext: #000000;
     /*
@@ -74,34 +75,24 @@
     -fx-font-family: ".SF NS Mono";
 }
 
-
-.combo-box {
-    -fx-background-color: -fx-primary;
+.combo-box-base {
+    -fx-background-color: -fx-lightprimary;
     -fx-border-color: -fx-secondary;
-    -fx-border-radius: 5px;
-    -fx-text-fill: -fx-primarytext;
-    -fx-prompt-text-fill: -fx-primarytext;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-font-size: 14;
 }
 
-.combo-box-popup .list-view {
-    -fx-font-size: 10pt;
+.combo-box-base .arrow-button {
+    -fx-background-color: -fx-primary;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
 }
 
-.combo-box .combo-box-popup .list-view, .combo-box .combo-box-popup .list-cell {
-    -fx-background-color: -fx-secondary;
+.combo-box .combo-box-popup, .list-view, .list-cell {
+    -fx-background-color: -fx-lightprimary;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-font-size: 14;
     -fx-text-fill: -fx-primarytext;
-    -fx-prompt-text-fill: -fx-primarytext;
-}
-
-.combo-box .combo-box-popup .list-cell:hover {
-    -fx-background-color: -fx-secondary;
-    -fx-text-fill: -fx-primarytext;
-    -fx-prompt-text-fill: -fx-primarytext;
-}
-
-
-.combo-box .combo-box-popup .cell:selected {
-    -fx-background-color: -fx-secondary;
-    -fx-text-fill: -fx-primarytext;
-    -fx-prompt-text-fill: -fx-primarytext;
 }
