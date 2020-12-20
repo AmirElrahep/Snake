@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -13,9 +14,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.amir.controller.PrimaryController">
    <children>
-      <AnchorPane fx:id="paneHome" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="pane_home" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="lblSnake" alignment="CENTER" layoutX="385.0" layoutY="61.0" text="Snake" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+            <Label fx:id="lbl_snake" alignment="CENTER" layoutX="385.0" layoutY="61.0" text="Snake" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font size="48.0" />
                </font>
@@ -25,12 +26,12 @@
                   <Image url="@images/logo_color.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="btnPlayGame" layoutX="393.0" layoutY="366.0" onAction="#btnPlayGamePressed" prefHeight="68.0" prefWidth="216.0" text="Play Game" />
+            <JFXButton fx:id="btn_playGame" layoutX="393.0" layoutY="366.0" onAction="#btnPlayGamePressed" prefHeight="68.0" prefWidth="216.0" text="Play Game" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneOptions" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="pane_options" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="lblGameOptions" alignment="CENTER" layoutX="324.0" layoutY="37.0" text="Game Options" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+            <Label fx:id="lbl_gameOptions" alignment="CENTER" layoutX="324.0" layoutY="37.0" text="Game Options" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font size="48.0" />
                </font>
@@ -48,41 +49,41 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="lblGameMode" text="Game Mode">
+                  <Label fx:id="lbl_gameMode" text="Game Mode">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblSnakeSpeed" text="Snake Speed" GridPane.rowIndex="3">
+                  <Label fx:id="lbl_snakeSpeed" text="Snake Speed" GridPane.rowIndex="3">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblSnakeColor" text="Snake Color" GridPane.rowIndex="4">
+                  <Label fx:id="lbl_snakeColor" text="Snake Color" GridPane.rowIndex="4">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ComboBox prefHeight="27.0" prefWidth="200.0" promptText="testing" GridPane.columnIndex="1" />
-                  <ComboBox prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <ComboBox prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label fx:id="lblNumberOfFruit" text="Number of Fruit" GridPane.rowIndex="1">
+                  <ComboBox fx:id="cbo_gameMode" prefHeight="27.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="cbo_snakeSpeed" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="lbl_numberOfFruit" text="Number of Fruit" GridPane.rowIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ComboBox prefWidth="200.0" promptText="test" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="lblFruitColor" text="Fruit Color" GridPane.rowIndex="2">
+                  <ComboBox fx:id="cbo_numberOfFruit" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="lbl_fruitColor" text="Fruit Color" GridPane.rowIndex="2">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ComboBox prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ColorPicker fx:id="cp_fruitColor" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ColorPicker fx:id="cp_snakeColor" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
-            <JFXButton fx:id="btnStartGame" layoutX="392.0" layoutY="634.0" onAction="#btnStartGamePressed" prefHeight="68.0" prefWidth="216.0" text="Start Game" AnchorPane.bottomAnchor="50.0" />
+            <JFXButton fx:id="btn_startGame" layoutX="392.0" layoutY="634.0" onAction="#btnStartGamePressed" prefHeight="68.0" prefWidth="216.0" text="Start Game" AnchorPane.bottomAnchor="50.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneGame" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="pane_game" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

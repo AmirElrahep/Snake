@@ -118,7 +118,7 @@ public class PrimaryController implements Initializable {
         lbl_snakeColor.setTextFill(Color.rgb(104, 147, 198));
 
 
-        // setting up comboboxes choices and default selections
+        // setting up combobox choices and default selections
         cbo_gameMode.getItems().addAll("Normal", "Walls", "Free Play");
         cbo_gameMode.setValue("Normal");
 
