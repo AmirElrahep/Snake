@@ -267,8 +267,10 @@ public class PrimaryController implements Initializable {
         int xPos = -1;
         int yPos = -1;
         while ((xPos % 20 != 0) || (yPos % 20 != 0)) {
-            xPos = rand.nextInt(1000) + 20;
-            yPos = rand.nextInt(800) + 20;
+            xPos = rand.nextInt(1000 - 20) + 20;
+            yPos = rand.nextInt(800 - 20) + 20;
+
+            System.out.println("x-pos: " + xPos + "\ny-pos: " + yPos + "\n\n");
         }
         fruit.setLayoutX(xPos);
         fruit.setLayoutY(yPos);
@@ -288,8 +290,8 @@ public class PrimaryController implements Initializable {
         int xPos = -1;
         int yPos = -1;
         while ((xPos % 20 != 0) || (yPos % 20 != 0)) {
-            xPos = rand.nextInt(100) + 20;
-            yPos = rand.nextInt(800) + 20;
+            xPos = rand.nextInt(1000 - 20) + 20;
+            yPos = rand.nextInt(800 - 20) + 20;
         }
         fruit = new Rectangle(20, 20, cp_fruitColor.getValue());
         fruit.setLayoutX(xPos);
