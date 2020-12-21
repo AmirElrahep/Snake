@@ -2,6 +2,7 @@ package com.amir.controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -16,6 +17,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
@@ -101,7 +103,12 @@ public class PrimaryController implements Initializable {
     }
 
 
-    //    // testing
+
+
+
+
+
+
     public static KeyCode currDirection = KeyCode.RIGHT;
 
 
@@ -112,13 +119,15 @@ public class PrimaryController implements Initializable {
      *
      * @return ArrayList of Rectangle objects representing the snake
      */
+
+    int numRectangles = 10;
+
     private ArrayList<Rectangle> createSnake() {
         ArrayList<Rectangle> snake = new ArrayList<>();
         Rectangle head = new Rectangle(20, 20, cp_snakeColor.getValue());
         snake.add(head);
 
-        int numCircles = 10;
-        for (int i = 1; i < numCircles; i++) {
+        for (int i = 1; i < numRectangles; i++) {
             Rectangle bodySegment = new Rectangle(20, 20);
             snake.add(bodySegment);
         }
@@ -229,6 +238,72 @@ public class PrimaryController implements Initializable {
     }
 
 
+
+
+    // testing
+    public void incrementSnakeSize(ArrayList<Rectangle> snake) {
+        Rectangle r = new Rectangle(20,20, cp_snakeColor.getValue());
+        snake.add(r);
+
+        System.out.println("Snake length: " + snake.size());
+
+        pane_game.getChildren().addAll(r);
+    }
+
+
+
+    public void collisionHandler(ArrayList<Rectangle> snake, Rectangle fruit) {
+        if (fruit.getLayoutY() == snake.get(0).getLayoutY() && fruit.getLayoutX() == snake.get(0).getLayoutX()) {
+            moveFruit(fruit);
+            incrementSnakeSize(snake);
+            System.out.println("snake hit fruit");
+        }
+    }
+
+
+    public void moveFruit(Rectangle fruit) {
+        //Rectangle fruit = new Rectangle(20,20,cp_fruitColor.getValue());
+
+        int xPos = -1;
+        int yPos = -1;
+        while ((xPos % 20 != 0) || (yPos % 20 != 0)) {
+            xPos = rand.nextInt(1000) + 20;
+            yPos = rand.nextInt(800) + 20;
+        }
+        fruit.setLayoutX(xPos);
+        fruit.setLayoutY(yPos);
+
+        pane_game.getChildren().remove(fruit);
+        pane_game.getChildren().add(fruit);
+    }
+
+
+
+
+    private static final Random rand = new Random();
+
+    public Rectangle generateFruit() {
+        Rectangle fruit;
+
+        int xPos = -1;
+        int yPos = -1;
+        while ((xPos % 20 != 0) || (yPos % 20 != 0)) {
+            xPos = rand.nextInt(100) + 20;
+            yPos = rand.nextInt(800) + 20;
+        }
+        fruit = new Rectangle(20, 20, cp_fruitColor.getValue());
+        fruit.setLayoutX(xPos);
+        fruit.setLayoutY(yPos);
+
+        return fruit;
+    }
+
+    private void drawFruit(Rectangle fruit, Pane pane) {
+        pane.getChildren().addAll(fruit);
+    }
+
+
+
     /**
      * This method initializes the Main App window when the program runs.
      *
@@ -267,19 +342,30 @@ public class PrimaryController implements Initializable {
         cp_snakeColor.setValue(Color.rgb(104, 147, 198));
 
 
+
+
+
         // testing
         ArrayList<Rectangle> snake = createSnake();
+        Rectangle fruit = generateFruit();
 
         // animation using Timeline
         Timeline timeline = new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> moveSnake(snake, PrimaryController.currDirection)));
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> collisionHandler(snake,fruit)));
+        //timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> moveFruit()));
+
+
         timeline.play();
 
 
         drawSnake(snake, pane_game);
+        drawFruit(fruit, pane_game);
+
 
         pane_game.setFocusTraversable(true);
+        //pane_game.requestFocus();
         pane_game.setOnKeyPressed(event -> {
             //PrimaryController.moveSnake(snake, event.getCode());
             PrimaryController.currDirection = event.getCode();
@@ -287,3 +373,8 @@ public class PrimaryController implements Initializable {
     }
 
 }
+
+/*
+ * Notes
+ * - bug in code: sometimes fruit generates where the snake is
+ */
