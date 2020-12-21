@@ -2,7 +2,7 @@ package com.amir.model;
 
 
 /**
- * Controller class for the application
+ * Snake class, represents a snake object
  *
  * @author Amir Elrahep
  * @since 12-18-2020

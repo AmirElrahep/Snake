@@ -26,7 +26,7 @@
                   <Image url="@images/logo_color.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="btn_playGame" layoutX="393.0" layoutY="366.0" onAction="#btnPlayGamePressed" prefHeight="68.0" prefWidth="216.0" text="Play Game" />
+            <JFXButton fx:id="btn_playGame" layoutX="393.0" layoutY="366.0" onAction="#btnPlayGamePressed" prefHeight="68.0" prefWidth="216.0" text="Play Game" AnchorPane.leftAnchor="392.0" AnchorPane.rightAnchor="392.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="pane_options" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
