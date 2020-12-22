@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import com.amir.model.Snake;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -100,165 +101,46 @@ public class PrimaryController implements Initializable {
         pane_options.setVisible(false);
         pane_game.setVisible(true);
         //App.disableMenu();
+        startGameLoop();
     }
-
-
-
-
-
 
 
 
     public static KeyCode currDirection = KeyCode.RIGHT;
 
+    public void startGameLoop() {
+        Snake snake = new Snake(10, cp_snakeColor.getValue());
+        //snake.createSnake();
 
-    /**
-     * This method creates the snake. Creates an ArrayList of Rectangle objects to represent the snake. Creates a
-     * Rectangle object representing the snake head and adds it to the array list. Creates the body of the snake by
-     * using a for loop to create Rectangle objects to represent the body segments and adds them to the ArrayList.
-     *
-     * @return ArrayList of Rectangle objects representing the snake
-     */
-
-    int numRectangles = 10;
-
-    private ArrayList<Rectangle> createSnake() {
-        ArrayList<Rectangle> snake = new ArrayList<>();
-        Rectangle head = new Rectangle(20, 20, cp_snakeColor.getValue());
-        snake.add(head);
-
-        for (int i = 1; i < numRectangles; i++) {
-            Rectangle bodySegment = new Rectangle(20, 20);
-            snake.add(bodySegment);
-        }
-        return snake;
-    }
+        Rectangle fruit = generateFruit();
 
 
-    /**
-     * This method draws the snake. It does this by adding the snake, "arraylist of circle objects", to the pane.
-     *
-     * @param snake ArrayList of Rectangle objects representing the snake
-     * @param pane  pane to draw the snake on
-     */
-    private void drawSnake(ArrayList<Rectangle> snake, Pane pane) {
-        pane.getChildren().addAll(snake);
-    }
+        // animation using Timeline
+        Timeline timeline = new Timeline();
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> snake.moveSnake(PrimaryController.currDirection)));
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> snake.collisionHandler(fruit, pane_game)));
+        //timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> moveFruit()));
+
+        timeline.play();
+
+        snake.drawSnake(pane_game);
+        drawFruit(fruit, pane_game);
 
 
-    /**
-     * This method moves the snake in the up direction.
-     *
-     * @param snake ArrayList of Rectangle objects representing the snake
-     */
-    public void moveSnakeUp(ArrayList<Rectangle> snake) {
-        Rectangle oldHead = snake.get(0);
-        Rectangle newHead = snake.remove(snake.size() - 1);
-        oldHead.setFill(cp_snakeColor.getValue());
-        newHead.setFill(cp_snakeColor.getValue());
-        newHead.setLayoutY((oldHead.getLayoutY() - 20 + 800) % 800);
-        newHead.setLayoutX(oldHead.getLayoutX());
-        snake.add(0, newHead);
-    }
-
-
-    /**
-     * This method moves the snake in the down direction.
-     *
-     * @param snake ArrayList of Rectangle objects representing the snake
-     */
-    public void moveSnakeDown(ArrayList<Rectangle> snake) {
-        Rectangle oldHead = snake.get(0);
-        Rectangle newHead = snake.remove(snake.size() - 1);
-        oldHead.setFill(cp_snakeColor.getValue());
-        newHead.setFill(cp_snakeColor.getValue());
-        newHead.setLayoutY((oldHead.getLayoutY() + 20 + 800) % 800);
-        newHead.setLayoutX(oldHead.getLayoutX());
-        snake.add(0, newHead);
-    }
-
-
-    /**
-     * This method moves the snake in the right direction.
-     *
-     * @param snake ArrayList of Rectangle objects representing the snake
-     */
-    public void moveSnakeRight(ArrayList<Rectangle> snake) {
-        Rectangle oldHead = snake.get(0);
-        Rectangle newHead = snake.remove(snake.size() - 1);
-        oldHead.setFill(cp_snakeColor.getValue());
-        newHead.setFill(cp_snakeColor.getValue());
-        newHead.setLayoutX((oldHead.getLayoutX() + 20) % 1000);
-        newHead.setLayoutY(oldHead.getLayoutY());
-        snake.add(0, newHead);
-    }
-
-
-    /**
-     * This method moves the snake in the left direction.
-     *
-     * @param snake ArrayList of Rectangle objects representing the snake
-     */
-    public void moveSnakeLeft(ArrayList<Rectangle> snake) {
-        Rectangle oldHead = snake.get(0);
-        Rectangle newHead = snake.remove(snake.size() - 1);
-        oldHead.setFill(cp_snakeColor.getValue());
-        newHead.setFill(cp_snakeColor.getValue());
-        newHead.setLayoutX((oldHead.getLayoutX() - 20 + 1000) % 1000);
-        newHead.setLayoutY(oldHead.getLayoutY());
-        snake.add(0, newHead);
-    }
-
-
-    /**
-     * This method moves the snake based on the key pressed. Takes an ArrayList of Rectangle objects representing
-     * the snake and the KeyCode direction. Based on the KeyCode direction, it uses a switch statement to call the
-     * corresponding method to move the snake in the varying direction.
-     *
-     * @param snake     ArrayList of Rectangle objects representing the snake
-     * @param direction direction of key pressed
-     */
-    private void moveSnake(ArrayList<Rectangle> snake, KeyCode direction) {
-        switch (direction) {
-            case UP:
-                moveSnakeUp(snake);
-                break;
-            case DOWN:
-                moveSnakeDown(snake);
-                break;
-            case RIGHT:
-                moveSnakeRight(snake);
-                break;
-            case LEFT:
-                moveSnakeLeft(snake);
-                break;
-            default:
-                break;
-        }
+        pane_game.setFocusTraversable(true);
+        //pane_game.requestFocus();
+        pane_game.setOnKeyPressed(event -> {
+            //PrimaryController.moveSnake(snake, event.getCode());
+            PrimaryController.currDirection = event.getCode();
+        });
     }
 
 
 
 
-    // testing
-    public void incrementSnakeSize(ArrayList<Rectangle> snake) {
-        Rectangle r = new Rectangle(20,20, cp_snakeColor.getValue());
-        snake.add(r);
-
-        System.out.println("Snake length: " + snake.size());
-
-        pane_game.getChildren().addAll(r);
-    }
 
 
-
-    public void collisionHandler(ArrayList<Rectangle> snake, Rectangle fruit) {
-        if (fruit.getLayoutY() == snake.get(0).getLayoutY() && fruit.getLayoutX() == snake.get(0).getLayoutX()) {
-            moveFruit(fruit);
-            incrementSnakeSize(snake);
-            System.out.println("snake hit fruit");
-        }
-    }
 
 
     public void moveFruit(Rectangle fruit) {
@@ -347,31 +229,31 @@ public class PrimaryController implements Initializable {
 
 
 
-        // testing
-        ArrayList<Rectangle> snake = createSnake();
-        Rectangle fruit = generateFruit();
-
-        // animation using Timeline
-        Timeline timeline = new Timeline();
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> moveSnake(snake, PrimaryController.currDirection)));
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> collisionHandler(snake,fruit)));
-        //timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> moveFruit()));
-
-
-        timeline.play();
-
-
-        drawSnake(snake, pane_game);
-        drawFruit(fruit, pane_game);
-
-
-        pane_game.setFocusTraversable(true);
-        //pane_game.requestFocus();
-        pane_game.setOnKeyPressed(event -> {
-            //PrimaryController.moveSnake(snake, event.getCode());
-            PrimaryController.currDirection = event.getCode();
-        });
+//        // testing
+//        ArrayList<Rectangle> snake = createSnake();
+//        Rectangle fruit = generateFruit();
+//
+//        // animation using Timeline
+//        Timeline timeline = new Timeline();
+//        timeline.setCycleCount(Timeline.INDEFINITE);
+//        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> moveSnake(snake, PrimaryController.currDirection)));
+//        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> collisionHandler(snake,fruit)));
+//        //timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> moveFruit()));
+//
+//
+//        timeline.play();
+//
+//
+//        drawSnake(snake, pane_game);
+//        drawFruit(fruit, pane_game);
+//
+//
+//        pane_game.setFocusTraversable(true);
+//        //pane_game.requestFocus();
+//        pane_game.setOnKeyPressed(event -> {
+//            //PrimaryController.moveSnake(snake, event.getCode());
+//            PrimaryController.currDirection = event.getCode();
+//        });
     }
 
 }
