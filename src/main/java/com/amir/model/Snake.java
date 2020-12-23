@@ -1,6 +1,5 @@
 package com.amir.model;
 
-
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -77,19 +76,31 @@ public class Snake {
                 break;
         }
         this.snakeHead = this.snake.get(0);
+
+        //System.out.println("-- Snake Location --\nX Pos: " + snakeHead.getLayoutX() + "\nY Pos: " + snakeHead.getLayoutY());
     }
 
 
-    public void collisionHandler(Rectangle fruit, Pane pane) {
-        if (fruit.getLayoutY() == snake.get(0).getLayoutY() && fruit.getLayoutX() == snake.get(0).getLayoutX()) {
-            //moveFruit(fruit);
-            incrementSnakeSize();
-            this.snakeLength++;
-            pane.getChildren().removeAll(snake);
-            drawSnake(pane);
+    public void collisionHandler(ArrayList<Fruit> fruits, Pane pane) {
+        // checking if snake hit fruit
+        for (Fruit f : fruits) {
+            if (f.getFruit().getLayoutY() == snake.get(0).getLayoutY() && f.getFruit().getLayoutX() == snake.get(0).getLayoutX()) {
+                incrementSnakeSize();
+                this.snakeLength++;
 
-            System.out.println("snake hit fruit");
+                pane.getChildren().removeAll(snake);
+                drawSnake(pane);
+
+                f.moveFruit();
+
+                // for testing
+                System.out.println("snake hit fruit");
+            }
         }
+
+        // checking if snake hit wall
+
+        // checking if snake hit itself
     }
 
 

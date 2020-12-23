@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import com.amir.model.Fruit;
 import com.amir.model.Snake;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.KeyFrame;
@@ -18,7 +19,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
@@ -109,82 +109,36 @@ public class PrimaryController implements Initializable {
     public static KeyCode currDirection = KeyCode.RIGHT;
 
     public void startGameLoop() {
-        Snake snake = new Snake(10, cp_snakeColor.getValue());
-        //snake.createSnake();
+        Snake snake = new Snake(5, cp_snakeColor.getValue());
+        snake.drawSnake(pane_game);
 
-        Rectangle fruit = generateFruit();
+        // creating an ArrayList of Fruit objects
+        ArrayList<Fruit> fruits = new ArrayList<>();
+        // for loop that fills the ArrayList with Fruit objects and displays them by calling the drawFruit method
+        for (int i = 0; i < cbo_numberOfFruit.getValue(); i++) {
+            fruits.add(new Fruit(cp_fruitColor.getValue()));
+            fruits.get(i).drawFruit(pane_game);
+        }
 
 
         // animation using Timeline
         Timeline timeline = new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> snake.moveSnake(PrimaryController.currDirection)));
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> snake.collisionHandler(fruit, pane_game)));
-        //timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> moveFruit()));
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> snake.collisionHandler(fruits, pane_game)));
 
         timeline.play();
 
-        snake.drawSnake(pane_game);
-        drawFruit(fruit, pane_game);
 
 
-        pane_game.setFocusTraversable(true);
-        //pane_game.requestFocus();
+        //pane_game.setFocusTraversable(true);
+        pane_game.requestFocus();
         pane_game.setOnKeyPressed(event -> {
-            //PrimaryController.moveSnake(snake, event.getCode());
             PrimaryController.currDirection = event.getCode();
         });
     }
 
 
-
-
-
-
-
-
-    public void moveFruit(Rectangle fruit) {
-        //Rectangle fruit = new Rectangle(20,20,cp_fruitColor.getValue());
-
-        int xPos = -1;
-        int yPos = -1;
-        while ((xPos % 20 != 0) || (yPos % 20 != 0)) {
-            xPos = rand.nextInt(1000 - 20) + 20;
-            yPos = rand.nextInt(800 - 20) + 20;
-
-            System.out.println("x-pos: " + xPos + "\ny-pos: " + yPos + "\n\n");
-        }
-        fruit.setLayoutX(xPos);
-        fruit.setLayoutY(yPos);
-
-        pane_game.getChildren().remove(fruit);
-        pane_game.getChildren().add(fruit);
-    }
-
-
-
-
-    private static final Random rand = new Random();
-
-    public Rectangle generateFruit() {
-        Rectangle fruit;
-
-        int xPos = -1;
-        int yPos = -1;
-        while ((xPos % 20 != 0) || (yPos % 20 != 0)) {
-            xPos = rand.nextInt(1000 - 20) + 20;
-            yPos = rand.nextInt(800 - 20) + 20;
-        }
-        fruit = new Rectangle(20, 20, cp_fruitColor.getValue());
-        fruit.setLayoutX(xPos);
-        fruit.setLayoutY(yPos);
-
-        return fruit;
-    }
-
-    private void drawFruit(Rectangle fruit, Pane pane) {
-        pane.getChildren().addAll(fruit);
-    }
 
 
 
@@ -225,35 +179,6 @@ public class PrimaryController implements Initializable {
 
         cp_snakeColor.setValue(Color.rgb(104, 147, 198));
 
-
-
-
-
-//        // testing
-//        ArrayList<Rectangle> snake = createSnake();
-//        Rectangle fruit = generateFruit();
-//
-//        // animation using Timeline
-//        Timeline timeline = new Timeline();
-//        timeline.setCycleCount(Timeline.INDEFINITE);
-//        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> moveSnake(snake, PrimaryController.currDirection)));
-//        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> collisionHandler(snake,fruit)));
-//        //timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> moveFruit()));
-//
-//
-//        timeline.play();
-//
-//
-//        drawSnake(snake, pane_game);
-//        drawFruit(fruit, pane_game);
-//
-//
-//        pane_game.setFocusTraversable(true);
-//        //pane_game.requestFocus();
-//        pane_game.setOnKeyPressed(event -> {
-//            //PrimaryController.moveSnake(snake, event.getCode());
-//            PrimaryController.currDirection = event.getCode();
-//        });
     }
 
 }

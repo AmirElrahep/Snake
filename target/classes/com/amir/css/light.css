@@ -80,7 +80,13 @@
     -fx-font-size: 14;
 }
 
-
+/*
+.combo-box-base .arrow-button {
+    -fx-background-color: -fx-lightprimary;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+*/
 
 .combo-box .combo-box-popup .list-cell:hover {
     -fx-background-color: -fx-secondary;
