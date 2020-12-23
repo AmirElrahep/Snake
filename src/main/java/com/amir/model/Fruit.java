@@ -22,7 +22,7 @@ public class Fruit {
 
     /**
      * This is the Fruit constructor. Creates a Fruit object this is represented by a Rectangle object.
-     * Takes in a Color representing the Fruit color.
+     * Takes in a color representing the fruit color.
      *
      * @param color color of the fruit
      */
