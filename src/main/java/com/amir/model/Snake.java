@@ -97,8 +97,20 @@ public class Snake {
         }
 
         // checking if snake hit wall
+        if (this.snakeHead.getLayoutX() <= 0 || this.snakeHead.getLayoutX() >= pane.getWidth() ||
+                this.snakeHead.getLayoutY() <= 0 || this.snakeHead.getLayoutY() >= pane.getHeight()) {
+
+            System.out.println("Snake hit wall");
+        }
 
         // checking if snake hit itself
+        for (int i = 1; i < this.snakeLength; i++) {
+            if (this.snake.get(i).getLayoutX() == this.snakeHead.getLayoutX() &&
+                    this.snake.get(i).getLayoutY() == this.snakeHead.getLayoutY()) {
+
+                System.out.println("Snake hit itself");
+            }
+        }
     }
 
 
