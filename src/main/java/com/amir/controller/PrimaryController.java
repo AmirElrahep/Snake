@@ -40,6 +40,8 @@ public class PrimaryController implements Initializable {
     private AnchorPane pane_options;
     @FXML
     private AnchorPane pane_game;
+    @FXML
+    private AnchorPane pane_gameOver;
 
 
     /**
@@ -49,6 +51,10 @@ public class PrimaryController implements Initializable {
     private JFXButton btn_playGame;
     @FXML
     private JFXButton btn_startGame;
+    @FXML
+    private JFXButton btn_playAgain;
+    @FXML
+    private JFXButton btn_changeOptions;
 
 
     /**
@@ -68,6 +74,10 @@ public class PrimaryController implements Initializable {
     private Label lbl_snakeSpeed;
     @FXML
     private Label lbl_snakeColor;
+    @FXML
+    private Label lbl_gameOver;
+    @FXML
+    private Label lbl_score;
 
 
     /**
@@ -102,6 +112,17 @@ public class PrimaryController implements Initializable {
         pane_game.setVisible(true);
         //App.disableMenu();
         startGameLoop();
+    }
+
+    public void btnChangeOptionsPressed() {
+        pane_gameOver.setVisible(false);
+        pane_options.setVisible(true);
+
+    }
+
+    public void btnPlayAgainPressed() {
+        pane_gameOver.setVisible(false);
+        pane_game.setVisible(true);
     }
 
 
@@ -154,6 +175,7 @@ public class PrimaryController implements Initializable {
         pane_home.setVisible(true);
         pane_options.setVisible(false);
         pane_game.setVisible(false);
+        pane_gameOver.setVisible(false);
 
         // setting colors for labels in the application
         lbl_snake.setTextFill(Color.rgb(104, 147, 198));
@@ -163,7 +185,9 @@ public class PrimaryController implements Initializable {
         lbl_fruitColor.setTextFill(Color.rgb(104, 147, 198));
         lbl_snakeSpeed.setTextFill(Color.rgb(104, 147, 198));
         lbl_snakeColor.setTextFill(Color.rgb(104, 147, 198));
-
+        lbl_gameOver.setTextFill(Color.rgb(104, 147, 198));
+        lbl_score.setTextFill(Color.rgb(104, 147, 198));
+        lbl_score.setText("Score: ");
 
         // setting up combobox choices and default selections
         cbo_gameMode.getItems().addAll("Normal", "Walls", "Free Play");
@@ -172,7 +196,7 @@ public class PrimaryController implements Initializable {
         cbo_numberOfFruit.getItems().addAll(1, 3, 5);
         cbo_numberOfFruit.setValue(1);
 
-        cp_fruitColor.setValue(Color.ORANGERED);
+        cp_fruitColor.setValue(Color.GREEN);
 
         cbo_snakeSpeed.getItems().addAll("Slow", "Normal", "Fast");
         cbo_snakeSpeed.setValue("Normal");

@@ -83,8 +83,9 @@ public class Snake {
      *
      * @param fruits ArrayList of Fruit objects
      * @param pane pane to draw Snake on
+     * @return boolean if snake is dead or not
      */
-    public void collisionHandler(ArrayList<Fruit> fruits, Pane pane) {
+    public boolean collisionHandler(ArrayList<Fruit> fruits, Pane pane) {
         // checking if snake hit fruit
         for (Fruit f : fruits) {
             if (f.getFruit().getLayoutY() == snake.get(0).getLayoutY() && f.getFruit().getLayoutX() == snake.get(0).getLayoutX()) {
@@ -98,6 +99,7 @@ public class Snake {
 
                 // for testing
                 System.out.println("snake hit fruit");
+                return false;
             }
         }
 
@@ -106,6 +108,7 @@ public class Snake {
                 this.snakeHead.getLayoutY() <= 0 || this.snakeHead.getLayoutY() >= pane.getHeight()) {
 
             System.out.println("Snake hit wall");
+            return true;
         }
 
         // checking if snake hit itself
@@ -114,8 +117,11 @@ public class Snake {
                     this.snake.get(i).getLayoutY() == this.snakeHead.getLayoutY()) {
 
                 System.out.println("Snake hit itself");
+                return true;
             }
         }
+
+        return false;
     }
 
 
