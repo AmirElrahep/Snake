@@ -45,7 +45,7 @@ public class Snake {
     /**
      * This method draws the Snake. It does this by adding the Snake, ArrayList of circle objects, to the pane.
      *
-     * @param pane pane to draw the snake on
+     * @param pane pane to draw the Snake on
      */
     public void drawSnake(Pane pane) {
         pane.getChildren().addAll(this.snake);
@@ -79,6 +79,11 @@ public class Snake {
     }
 
 
+    /**
+     *
+     * @param fruits ArrayList of Fruit objects
+     * @param pane pane to draw Snake on
+     */
     public void collisionHandler(ArrayList<Fruit> fruits, Pane pane) {
         // checking if snake hit fruit
         for (Fruit f : fruits) {
