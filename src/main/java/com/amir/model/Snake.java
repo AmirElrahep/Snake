@@ -43,12 +43,22 @@ public class Snake {
 
 
     /**
-     * This method draws the Snake. It does this by adding the Snake, ArrayList of circle objects, to the pane.
+     * This method draws the Snake. It does this by adding the Snake, ArrayList of Rectangle objects, to the pane.
      *
      * @param pane pane to draw the Snake on
      */
     public void drawSnake(Pane pane) {
         pane.getChildren().addAll(this.snake);
+    }
+
+
+    /**
+     * This method erases the Snake. It does this by removing the Snake, ArrayList of Rectangle objects, from the pane.
+     *
+     * @param pane pane to erase the Snake from
+     */
+    public void eraseSnake(Pane pane) {
+        pane.getChildren().removeAll(this.snake);
     }
 
 
@@ -98,7 +108,7 @@ public class Snake {
                 f.moveFruit();
 
                 // for testing
-                System.out.println("snake hit fruit");
+                //System.out.println("snake hit fruit");
                 return false;
             }
         }
@@ -107,7 +117,7 @@ public class Snake {
         if (this.snakeHead.getLayoutX() <= 0 || this.snakeHead.getLayoutX() >= pane.getWidth() ||
                 this.snakeHead.getLayoutY() <= 0 || this.snakeHead.getLayoutY() >= pane.getHeight()) {
 
-            System.out.println("Snake hit wall");
+            //System.out.println("Snake hit wall");
             return true;
         }
 
@@ -116,7 +126,7 @@ public class Snake {
             if (this.snake.get(i).getLayoutX() == this.snakeHead.getLayoutX() &&
                     this.snake.get(i).getLayoutY() == this.snakeHead.getLayoutY()) {
 
-                System.out.println("Snake hit itself");
+                //System.out.println("Snake hit itself");
                 return true;
             }
         }
@@ -124,6 +134,15 @@ public class Snake {
         return false;
     }
 
+
+    public void setIsDead(Boolean isDead) {
+        this.isDead = isDead;
+    }
+
+
+    public boolean getIsDead() {
+        return isDead;
+    }
 
     // private methods
 
@@ -137,13 +156,17 @@ public class Snake {
         Rectangle head = new Rectangle(20, 20, snakeColor);
         this.snake.add(head);
         this.snakeHead = snake.get(0);
+        snakeHead.setLayoutX(40);
+        snakeHead.setLayoutY(40);
+
 
         // creating the snake body
         for (int i = 1; i < snakeLength; i++) {
             Rectangle bodySegment = new Rectangle(20, 20);
             snake.add(bodySegment);
+            bodySegment.setLayoutX(40);
+            bodySegment.setLayoutY(40);
         }
-        System.out.println("Snake length: " + snakeLength);
     }
 
 
@@ -216,8 +239,6 @@ public class Snake {
         newTail.setLayoutY(oldTail.getLayoutY());
 
         this.snake.add(newTail);
-
-        System.out.println("Snake length: " + snake.size());
     }
 
 }

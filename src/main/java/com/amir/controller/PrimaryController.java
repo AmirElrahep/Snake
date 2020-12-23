@@ -2,12 +2,14 @@ package com.amir.controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 import com.amir.model.Fruit;
 import com.amir.model.Snake;
 import com.jfoenix.controls.JFXButton;
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -117,12 +119,13 @@ public class PrimaryController implements Initializable {
     public void btnChangeOptionsPressed() {
         pane_gameOver.setVisible(false);
         pane_options.setVisible(true);
-
     }
 
     public void btnPlayAgainPressed() {
         pane_gameOver.setVisible(false);
         pane_game.setVisible(true);
+
+        startGameLoop();
     }
 
 
@@ -130,10 +133,11 @@ public class PrimaryController implements Initializable {
     public static KeyCode currDirection = KeyCode.RIGHT;
 
     public void startGameLoop() {
+        // creating a snake and drawing it to the screen
         Snake snake = new Snake(5, cp_snakeColor.getValue());
         snake.drawSnake(pane_game);
 
-        // creating an ArrayList of Fruit objects
+        // creating an ArrayList of Fruits and drawing them to the screen
         ArrayList<Fruit> fruits = new ArrayList<>();
         // for loop that fills the ArrayList with Fruit objects and displays them by calling the drawFruit method
         for (int i = 0; i < cbo_numberOfFruit.getValue(); i++) {
@@ -142,13 +146,62 @@ public class PrimaryController implements Initializable {
         }
 
 
-        // animation using Timeline
-        Timeline timeline = new Timeline();
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> snake.moveSnake(PrimaryController.currDirection)));
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> snake.collisionHandler(fruits, pane_game)));
 
-        timeline.play();
+        // animation using Timeline
+//        Timeline timeline = new Timeline();
+//        timeline.setCycleCount(Timeline.INDEFINITE);
+//        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> snake.moveSnake(PrimaryController.currDirection)));
+//        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> snake.collisionHandler(fruits, pane_game)));
+//
+//        timeline.play();
+
+
+
+        // animation using AnimationTimer
+        AnimationTimer animationTimer = new AnimationTimer() {
+
+            private int frameCount = 0; // used to slow the animation down
+            private final int speedValue = 5; // calculates the frame value for the handle function
+
+
+            @Override
+            public void handle(long now) {
+
+                if (frameCount % speedValue == 0) { // will only handle the next animation when frameCount is divisible by 4
+                    snake.moveSnake(PrimaryController.currDirection); // move snake forward
+                }
+                frameCount++;
+
+                //snake.moveSnake(PrimaryController.currDirection);
+                snake.collisionHandler(fruits, pane_game);
+
+                snake.setIsDead(snake.collisionHandler(fruits, pane_game));
+                if (snake.getIsDead()) {
+                    stop();
+
+                    // erasing the snake
+                    snake.eraseSnake(pane_game);
+
+                    // erasing the fruit
+                    for (int i = 0; i < cbo_numberOfFruit.getValue(); i++) {
+                        fruits.get(i).eraseFruit(pane_game);
+                    }
+
+
+
+                    pane_game.setVisible(false);
+                    pane_gameOver.setVisible(true);
+                    //pane_game.requestFocus();
+                    //pane_game.setFocusTraversable(true);
+                }
+
+                //System.out.println(snake.getIsDead());
+            }
+        };
+        animationTimer.start();
+
+
+
 
 
 

@@ -37,10 +37,20 @@ public class Fruit {
     /**
      * This method draws the Fruit. It does this by adding the Fruit to the pane.
      *
-     * @param pane pane to draw the fruit on
+     * @param pane pane to draw the Fruit on
      */
     public void drawFruit(Pane pane) {
         pane.getChildren().add(this.fruit);
+    }
+
+
+    /**
+     * This method erases the Fruit. It does this by removing the Fruit from the pane.
+     *
+     * @param pane pane to erase Fruit from
+     */
+    public void eraseFruit(Pane pane) {
+        pane.getChildren().remove(this.fruit);
     }
 
 
