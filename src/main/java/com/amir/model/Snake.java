@@ -25,7 +25,7 @@ public class Snake {
 
 
     /**
-     * This is the snake constructor. Creates a snake object that is represented by an ArrayList of Rectangle object.
+     * This is the Snake constructor. Creates a Snake object that is represented by an ArrayList of Rectangle object.
      * Takes in an integer representing the snake length and a color representing the snake color.
      *
      * @param length length of the snake
@@ -43,7 +43,7 @@ public class Snake {
 
 
     /**
-     * This method draws the snake. It does this by adding the snake, ArrayList of circle objects, to the pane.
+     * This method draws the Snake. It does this by adding the Snake, ArrayList of circle objects, to the pane.
      *
      * @param pane pane to draw the snake on
      */
@@ -53,8 +53,8 @@ public class Snake {
 
 
     /**
-     * This method moves the snake based on the key pressed. Takes a KeyCode direction. Based on the KeyCode direction,
-     * it uses a switch statement to call the corresponding method to move the snake in the varying direction.
+     * This method moves the Snake based on the key pressed. Takes a KeyCode direction. Based on the KeyCode direction,
+     * it uses a switch statement to call the corresponding method to move the Snake in the varying direction.
      *
      * @param direction direction of key pressed
      */
@@ -76,8 +76,6 @@ public class Snake {
                 break;
         }
         this.snakeHead = this.snake.get(0);
-
-        //System.out.println("-- Snake Location --\nX Pos: " + snakeHead.getLayoutX() + "\nY Pos: " + snakeHead.getLayoutY());
     }
 
 
@@ -107,9 +105,9 @@ public class Snake {
     // private methods
 
     /**
-     * This method creates the snake. Creates an ArrayList of Rectangle objects to represent the snake. Creates a
-     * Rectangle object representing the snake head and adds it to the array list. Sets the snakeHead to the first
-     * element in the ArrayList. Creates the body of the snake by using a for loop to create Rectangle objects to
+     * This method creates the Snake. Creates an ArrayList of Rectangle objects to represent the Snake. Creates a
+     * Rectangle object representing the Snake head and adds it to the ArrayList. Sets the snakeHead to the first
+     * element in the ArrayList. Creates the body of the Snake by using a for loop to create Rectangle objects to
      * represent the body segments and adds them to the ArrayList.
      */
     private void createSnake() {
@@ -127,7 +125,7 @@ public class Snake {
 
 
     /**
-     * This method moves the snake in the up direction.
+     * This method moves the Snake in the up direction.
      */
     private void moveSnakeUp() {
         Rectangle oldHead = this.snakeHead;
@@ -141,7 +139,7 @@ public class Snake {
 
 
     /**
-     * This method moves the snake in the down direction.
+     * This method moves the Snake in the down direction.
      */
     private void moveSnakeDown() {
         Rectangle oldHead = this.snakeHead;
@@ -155,7 +153,7 @@ public class Snake {
 
 
     /**
-     * This method moves the snake in the right direction.
+     * This method moves the Snake in the right direction.
      */
     private void moveSnakeRight() {
         Rectangle oldHead = this.snakeHead;
@@ -169,7 +167,7 @@ public class Snake {
 
 
     /**
-     * This method moves the snake in the left direction.
+     * This method moves the Snake in the left direction.
      */
     private void moveSnakeLeft() {
         Rectangle oldHead = this.snakeHead;
@@ -183,9 +181,9 @@ public class Snake {
 
 
     /**
-     * This method increments the snake length. Creates a new Rectangle object, oldTail, and sets that to the end
-     * of the snake object represented by the ArrayList of Rectangle objects. Creates a new Rectangle object, newTail.
-     * Sets the LayoutX and LayoutY of newTail to that of oldTail. Then adds the newTail to the snake object.
+     * This method increments the Snake length. Creates a new Rectangle object, oldTail, and sets that to the end
+     * of the Snake object represented by the ArrayList of Rectangle objects. Creates a new Rectangle object, newTail.
+     * Sets the LayoutX and LayoutY of newTail to that of oldTail. Then adds the newTail to the Snake.
      */
     private void incrementSnakeSize() {
         Rectangle oldTail = this.snake.get(snakeLength - 1);
