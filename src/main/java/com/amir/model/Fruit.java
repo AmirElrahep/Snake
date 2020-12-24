@@ -72,6 +72,16 @@ public class Fruit {
     }
 
 
+    /**
+     * This method return the Fruit object.
+     *
+     * @return fruit
+     */
+    public Rectangle getFruit() {
+        return fruit;
+    }
+
+
     // private methods
 
     /**
@@ -80,16 +90,6 @@ public class Fruit {
     private void createFruit() {
         this.fruit = new Rectangle(20, 20, fruitColor);
         moveFruit();
-    }
-
-
-    /**
-     * This method return the Fruit object.
-     *
-     * @return fruit
-     */
-    public Rectangle getFruit() {
-        return fruit;
     }
 
 }

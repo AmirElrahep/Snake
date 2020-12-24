@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import com.amir.model.Fruit;
 import com.amir.model.Snake;
+import com.amir.model.Wall;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -141,20 +142,19 @@ public class PrimaryController implements Initializable {
 
         // creating an ArrayList of Fruits and drawing them to the screen
         ArrayList<Fruit> fruits = new ArrayList<>();
-        // for loop that fills the ArrayList with Fruit objects and displays them by calling the drawFruit method
         for (int i = 0; i < cbo_numberOfFruit.getValue(); i++) {
             fruits.add(new Fruit(cp_fruitColor.getValue()));
             fruits.get(i).drawFruit(pane_game);
         }
 
-
-        // animation using Timeline
-//        Timeline timeline = new Timeline();
-//        timeline.setCycleCount(Timeline.INDEFINITE);
-//        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> snake.moveSnake(PrimaryController.currDirection)));
-//        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> snake.collisionHandler(fruits, pane_game)));
-//
-//        timeline.play();
+        // if game mode Walls is selected, creates an ArrayList of Walls and draws them to the screen
+        ArrayList<Wall> walls = new ArrayList<>();
+        if (cbo_gameMode.getValue().equals("Walls")) {
+            for (int i = 0; i < 25; i++) {
+                walls.add(new Wall(Color.BLACK));
+                walls.get(i).drawWall(pane_game);
+            }
+        }
 
 
         // animation using AnimationTimer
@@ -171,21 +171,23 @@ public class PrimaryController implements Initializable {
                 }
                 frameCount++;
 
-                //snake.moveSnake(PrimaryController.currDirection);
-                snake.collisionHandler(fruits, pane_game);
+                snake.collisionHandler(fruits, walls, pane_game);
 
-                // checking game mode selection
-                if (cbo_gameMode.getValue().equals("Normal")) {
-                    snake.setIsDead(snake.collisionHandler(fruits, pane_game));
+                // checking which game mode selection is made
+                if (cbo_gameMode.getValue().equals("Normal") || cbo_gameMode.getValue().equals("Walls")) {
+                    snake.setIsDead(snake.collisionHandler(fruits, walls, pane_game));
                     if (snake.getIsDead()) {
                         stop(); // stopping the animationTimer
 
-                        // erasing the snake
+                        // erase the Snake, Fruit, and Walls
                         snake.eraseSnake(pane_game);
 
-                        // erasing the fruit
-                        for (int i = 0; i < cbo_numberOfFruit.getValue(); i++) {
-                            fruits.get(i).eraseFruit(pane_game);
+                        for (Fruit f : fruits) {
+                            f.eraseFruit(pane_game);
+                        }
+
+                        for (Wall w : walls) {
+                            w.eraseWall(pane_game);
                         }
 
                         // setting pane visibility and score
@@ -198,9 +200,9 @@ public class PrimaryController implements Initializable {
                     }
                 } else if (cbo_gameMode.getValue().equals("Walls")) {
 
-                }
 
-            }
+                } // end else if
+            } // end handle
         };
         animationTimer.start();
 
@@ -252,7 +254,6 @@ public class PrimaryController implements Initializable {
         cbo_snakeSpeed.setValue("Normal");
 
         cp_snakeColor.setValue(Color.rgb(104, 147, 198));
-
     }
 
 }

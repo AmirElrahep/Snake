@@ -97,7 +97,7 @@ public class Snake {
      * @param pane   pane to draw Snake on
      * @return boolean if snake is dead or not
      */
-    public boolean collisionHandler(ArrayList<Fruit> fruits, Pane pane) {
+    public boolean collisionHandler(ArrayList<Fruit> fruits, ArrayList<Wall> walls, Pane pane) {
         // checking if snake hit fruit
         for (Fruit f : fruits) {
             if (f.getFruit().getLayoutY() == snake.get(0).getLayoutY() && f.getFruit().getLayoutX() == snake.get(0).getLayoutX()) {
@@ -119,7 +119,16 @@ public class Snake {
             }
         }
 
-        // checking if snake hit wall
+        // checking if snake hit inner walls
+        for (Wall w : walls) {
+            if (w.getWall().getLayoutY() == snake.get(0).getLayoutY() && w.getWall().getLayoutX() == snake.get(0).getLayoutX()) {
+
+                System.out.println("snake hit inner wall");
+                return true;
+            }
+        }
+
+        // checking if snake hit screen walls
         if (this.snakeHead.getLayoutX() <= -20 || this.snakeHead.getLayoutX() >= pane.getWidth() ||
                 this.snakeHead.getLayoutY() <= -20 || this.snakeHead.getLayoutY() >= pane.getHeight()) {
 
