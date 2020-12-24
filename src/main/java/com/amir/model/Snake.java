@@ -1,5 +1,6 @@
 package com.amir.model;
 
+import com.amir.controller.PrimaryController;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -86,19 +87,24 @@ public class Snake {
                 break;
         }
         this.snakeHead = this.snake.get(0);
+
+        System.out.println("--- Snake Location ---\nX-Pos: " + snakeHead.getLayoutX() + "\nY-Pos: " + snakeHead.getLayoutY());
     }
 
 
     /**
-     *
      * @param fruits ArrayList of Fruit objects
-     * @param pane pane to draw Snake on
+     * @param pane   pane to draw Snake on
      * @return boolean if snake is dead or not
      */
     public boolean collisionHandler(ArrayList<Fruit> fruits, Pane pane) {
         // checking if snake hit fruit
         for (Fruit f : fruits) {
             if (f.getFruit().getLayoutY() == snake.get(0).getLayoutY() && f.getFruit().getLayoutX() == snake.get(0).getLayoutX()) {
+
+                // incrementing score
+                PrimaryController.score++;
+
                 incrementSnakeSize();
                 this.snakeLength++;
 
@@ -114,8 +120,8 @@ public class Snake {
         }
 
         // checking if snake hit wall
-        if (this.snakeHead.getLayoutX() <= 0 || this.snakeHead.getLayoutX() >= pane.getWidth() ||
-                this.snakeHead.getLayoutY() <= 0 || this.snakeHead.getLayoutY() >= pane.getHeight()) {
+        if (this.snakeHead.getLayoutX() <= -20 || this.snakeHead.getLayoutX() >= pane.getWidth() ||
+                this.snakeHead.getLayoutY() <= -20 || this.snakeHead.getLayoutY() >= pane.getHeight()) {
 
             //System.out.println("Snake hit wall");
             return true;
@@ -178,8 +184,13 @@ public class Snake {
         Rectangle newHead = this.snake.remove(this.snakeLength - 1);
         oldHead.setFill(snakeColor);
         newHead.setFill(snakeColor);
-        newHead.setLayoutY((oldHead.getLayoutY() - 20 + 800) % 800);
+        newHead.setLayoutY((oldHead.getLayoutY() - 20) % 820);
         newHead.setLayoutX(oldHead.getLayoutX());
+
+        if (newHead.getLayoutY() <= -20) {
+            newHead.setLayoutY(800);
+        }
+
         this.snake.add(0, newHead);
     }
 
@@ -192,7 +203,7 @@ public class Snake {
         Rectangle newHead = this.snake.remove(this.snakeLength - 1);
         oldHead.setFill(snakeColor);
         newHead.setFill(snakeColor);
-        newHead.setLayoutY((oldHead.getLayoutY() + 20 + 800) % 800);
+        newHead.setLayoutY((oldHead.getLayoutY() + 20) % 820);
         newHead.setLayoutX(oldHead.getLayoutX());
         this.snake.add(0, newHead);
     }
@@ -206,7 +217,7 @@ public class Snake {
         Rectangle newHead = this.snake.remove(this.snakeLength - 1);
         oldHead.setFill(snakeColor);
         newHead.setFill(snakeColor);
-        newHead.setLayoutX((oldHead.getLayoutX() + 20) % 1000);
+        newHead.setLayoutX((oldHead.getLayoutX() + 20) % 1020);
         newHead.setLayoutY(oldHead.getLayoutY());
         this.snake.add(0, newHead);
     }
@@ -220,8 +231,13 @@ public class Snake {
         Rectangle newHead = this.snake.remove(this.snakeLength - 1);
         oldHead.setFill(snakeColor);
         newHead.setFill(snakeColor);
-        newHead.setLayoutX((oldHead.getLayoutX() - 20 + 1000) % 1000);
+        newHead.setLayoutX((oldHead.getLayoutX() - 20) % 1020);
         newHead.setLayoutY(oldHead.getLayoutY());
+
+        if (newHead.getLayoutX() <= -20) {
+            newHead.setLayoutX(1000);
+        }
+
         this.snake.add(0, newHead);
     }
 

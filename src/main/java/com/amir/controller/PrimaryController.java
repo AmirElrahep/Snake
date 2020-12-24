@@ -100,9 +100,9 @@ public class PrimaryController implements Initializable {
     // public methods
 
     /**
-     * These are the methods when the Play Game or Start Game buttons are pressed. Sets the current pane visibility
-     * to false and sets the corresponding pane's visibility to true. The btnStartGamePressed method calls the
-     * disableMenu method to set the menu visibility to false.
+     * These are the methods when the Play Game, Start Game, Change Options, or Play Again buttons are pressed.
+     * Sets the current pane visibility to false and sets the corresponding pane's visibility to true. Calls the
+     * startGameLoop method if necessary.
      */
     public void btnPlayGamePressed() {
         pane_home.setVisible(false);
@@ -129,10 +129,12 @@ public class PrimaryController implements Initializable {
     }
 
 
-
     public static KeyCode currDirection = KeyCode.RIGHT;
+    public static int score = 0;
 
     public void startGameLoop() {
+        currDirection = KeyCode.RIGHT;
+
         // creating a snake and drawing it to the screen
         Snake snake = new Snake(5, cp_snakeColor.getValue());
         snake.drawSnake(pane_game);
@@ -146,7 +148,6 @@ public class PrimaryController implements Initializable {
         }
 
 
-
         // animation using Timeline
 //        Timeline timeline = new Timeline();
 //        timeline.setCycleCount(Timeline.INDEFINITE);
@@ -154,7 +155,6 @@ public class PrimaryController implements Initializable {
 //        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event -> snake.collisionHandler(fruits, pane_game)));
 //
 //        timeline.play();
-
 
 
         // animation using AnimationTimer
@@ -166,7 +166,6 @@ public class PrimaryController implements Initializable {
 
             @Override
             public void handle(long now) {
-
                 if (frameCount % speedValue == 0) { // will only handle the next animation when frameCount is divisible by 4
                     snake.moveSnake(PrimaryController.currDirection); // move snake forward
                 }
@@ -175,34 +174,35 @@ public class PrimaryController implements Initializable {
                 //snake.moveSnake(PrimaryController.currDirection);
                 snake.collisionHandler(fruits, pane_game);
 
-                snake.setIsDead(snake.collisionHandler(fruits, pane_game));
-                if (snake.getIsDead()) {
-                    stop();
+                // checking game mode selection
+                if (cbo_gameMode.getValue().equals("Normal")) {
+                    snake.setIsDead(snake.collisionHandler(fruits, pane_game));
+                    if (snake.getIsDead()) {
+                        stop(); // stopping the animationTimer
 
-                    // erasing the snake
-                    snake.eraseSnake(pane_game);
+                        // erasing the snake
+                        snake.eraseSnake(pane_game);
 
-                    // erasing the fruit
-                    for (int i = 0; i < cbo_numberOfFruit.getValue(); i++) {
-                        fruits.get(i).eraseFruit(pane_game);
+                        // erasing the fruit
+                        for (int i = 0; i < cbo_numberOfFruit.getValue(); i++) {
+                            fruits.get(i).eraseFruit(pane_game);
+                        }
+
+                        // setting pane visibility and score
+                        pane_game.setVisible(false);
+                        pane_gameOver.setVisible(true);
+                        lbl_score.setText("Score: " + score);
+
+                        // resting score to 0
+                        score = 0;
                     }
+                } else if (cbo_gameMode.getValue().equals("Walls")) {
 
-
-
-                    pane_game.setVisible(false);
-                    pane_gameOver.setVisible(true);
-                    //pane_game.requestFocus();
-                    //pane_game.setFocusTraversable(true);
                 }
 
-                //System.out.println(snake.getIsDead());
             }
         };
         animationTimer.start();
-
-
-
-
 
 
         //pane_game.setFocusTraversable(true);
@@ -211,9 +211,6 @@ public class PrimaryController implements Initializable {
             PrimaryController.currDirection = event.getCode();
         });
     }
-
-
-
 
 
     /**

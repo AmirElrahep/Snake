@@ -14,7 +14,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.amir.controller.PrimaryController">
    <children>
-      <AnchorPane fx:id="pane_home" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="pane_home" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="lbl_snake" alignment="CENTER" layoutX="385.0" layoutY="61.0" text="Snake" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <font>
@@ -29,7 +29,7 @@
             <JFXButton fx:id="btn_playGame" layoutX="393.0" layoutY="366.0" onAction="#btnPlayGamePressed" prefHeight="68.0" prefWidth="216.0" text="Play Game" AnchorPane.leftAnchor="392.0" AnchorPane.rightAnchor="392.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane_options" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="pane_options" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="lbl_gameOptions" alignment="CENTER" layoutX="324.0" layoutY="37.0" text="Game Options" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <font>
@@ -84,8 +84,8 @@
             <JFXButton fx:id="btn_startGame" layoutX="392.0" layoutY="634.0" onAction="#btnStartGamePressed" prefHeight="68.0" prefWidth="216.0" text="Start Game" AnchorPane.bottomAnchor="50.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane_game" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="pane_gameOver" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="pane_game" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="pane_gameOver" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="lbl_gameOver" alignment="CENTER" layoutY="201.0" text="Game Over" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="200.0">
                <font>
@@ -93,9 +93,9 @@
                </font>
             </Label>
             <JFXButton fx:id="btn_playAgain" layoutX="381.0" layoutY="533.0" onAction="#btnPlayAgainPressed" prefHeight="68.0" prefWidth="216.0" text="Play Again" AnchorPane.bottomAnchor="200.0" AnchorPane.rightAnchor="250.0" />
-            <Label fx:id="lbl_score" alignment="CENTER" layoutY="386.0" text="null" AnchorPane.bottomAnchor="385.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="385.5">
+            <Label fx:id="lbl_score" alignment="CENTER" layoutY="378.0" text="null" AnchorPane.bottomAnchor="378.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="378.0">
                <font>
-                  <Font size="24.0" />
+                  <Font size="36.0" />
                </font>
             </Label>
             <JFXButton fx:id="btn_changeOptions" layoutX="392.0" layoutY="632.0" onAction="#btnChangeOptionsPressed" prefHeight="68.0" prefWidth="216.0" text="Change Options" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="250.0" />
