@@ -95,7 +95,7 @@ public class PrimaryController implements Initializable {
     @FXML
     private ComboBox<String> cbo_snakeSpeed;
     @FXML
-    private ColorPicker cp_snakeColor;
+    private ColorPicker cp_snakeColor = new ColorPicker();
 
 
     // public methods
@@ -166,6 +166,32 @@ public class PrimaryController implements Initializable {
 
             @Override
             public void handle(long now) {
+
+                // is user pressed ESC to quit
+                if (PrimaryController.currDirection.equals(KeyCode.ESCAPE)) {
+                    stop(); // stopping the animationTimer
+
+                    // erase the Snake, Fruit, and Walls
+                    snake.eraseSnake(pane_game);
+
+                    for (Fruit f : fruits) {
+                        f.eraseFruit(pane_game);
+                    }
+
+                    for (Wall w : walls) {
+                        w.eraseWall(pane_game);
+                    }
+
+                    // setting pane visibility and score
+                    pane_game.setVisible(false);
+                    pane_gameOver.setVisible(true);
+                    lbl_score.setText("Score: " + score);
+
+                    // resting score to 0
+                    score = 0;
+                }
+
+
                 if (frameCount % speedValue == 0) { // will only handle the next animation when frameCount is divisible by 4
                     snake.moveSnake(PrimaryController.currDirection); // move snake forward
                 }
@@ -173,7 +199,7 @@ public class PrimaryController implements Initializable {
 
                 snake.collisionHandler(fruits, walls, pane_game);
 
-                // checking which game mode selection is made
+                // checking which game mode selection is made - this is for Normal and Walls game modes
                 if (cbo_gameMode.getValue().equals("Normal") || cbo_gameMode.getValue().equals("Walls")) {
                     snake.setIsDead(snake.collisionHandler(fruits, walls, pane_game));
                     if (snake.getIsDead()) {
@@ -198,10 +224,7 @@ public class PrimaryController implements Initializable {
                         // resting score to 0
                         score = 0;
                     }
-                } else if (cbo_gameMode.getValue().equals("Walls")) {
-
-
-                } // end else if
+                }
             } // end handle
         };
         animationTimer.start();
