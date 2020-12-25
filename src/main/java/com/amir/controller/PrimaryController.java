@@ -98,8 +98,6 @@ public class PrimaryController implements Initializable {
     private ColorPicker cp_snakeColor = new ColorPicker();
 
 
-    // public methods
-
     /**
      * These are the methods when the Play Game, Start Game, Change Options, or Play Again buttons are pressed.
      * Sets the current pane visibility to false and sets the corresponding pane's visibility to true. Calls the
@@ -129,6 +127,12 @@ public class PrimaryController implements Initializable {
         startGameLoop();
     }
 
+
+
+
+
+
+    // testing
 
     public static KeyCode currDirection = KeyCode.RIGHT;
     public static int score = 0;

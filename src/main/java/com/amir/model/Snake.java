@@ -22,7 +22,6 @@ public class Snake {
     private Rectangle snakeHead;
     private final Color snakeColor;
     private boolean isDead;
-    //private KeyCode currDirection;
 
 
     /**
@@ -37,7 +36,6 @@ public class Snake {
         this.snakeLength = length;
         this.snakeColor = color;
         this.isDead = false;
-        //this.currDirection = KeyCode.RIGHT;
 
         createSnake();
     }
@@ -88,23 +86,44 @@ public class Snake {
         }
         this.snakeHead = this.snake.get(0);
 
+        // for testing - prints the snake location
         System.out.println("--- Snake Location ---\nX-Pos: " + snakeHead.getLayoutX() + "\nY-Pos: " + snakeHead.getLayoutY());
     }
 
 
     /**
+     * This method checks for a collision with the snake.
+     * <p>
+     * -- Part one --
+     * Checks if the Snake collided with a Fruit object. Loops through the ArrayList of Fruit objects and if the
+     * Fruit's LayoutY and LayoutX equal the Snake's LayoutY and LayoutX. If a collision occurs, the player score and
+     * Snake size are incremented. The Snake is removed and redrawn to the pane. The Fruit is moves to a new location.
+     * Return false.
+     * <p>
+     * -- Part two --
+     * Checks if the Snake collided with a Wall object. Loops through the ArrayList of Wall objects and if the Wall's
+     * LayoutY and LayoutX equal the Snake's LayoutY and LayoutX, return true.
+     * <p>
+     * -- Part three --
+     * Checks if the Snake collided with the border walls. Return true.
+     * <p>
+     * -- Part four --
+     * Checks if the Snake hit itself. Loops through the length of the Snake and checks if the Snake it itself, if so
+     * return true.
+     * <p>
+     * -- Part five --
+     * Return false.
+     *
      * @param fruits ArrayList of Fruit objects
      * @param pane   pane to draw Snake on
      * @return boolean if snake is dead or not
      */
     public boolean collisionHandler(ArrayList<Fruit> fruits, ArrayList<Wall> walls, Pane pane) {
-        // checking if snake hit fruit
+        // -- part one -- checking if Snake hit fruit
         for (Fruit f : fruits) {
-            if (f.getFruit().getLayoutY() == snake.get(0).getLayoutY() && f.getFruit().getLayoutX() == snake.get(0).getLayoutX()) {
-
-                // incrementing score
+            if (f.getFruit().getLayoutY() == snake.get(0).getLayoutY() &&
+                    f.getFruit().getLayoutX() == snake.get(0).getLayoutX()) {
                 PrimaryController.score++;
-
                 incrementSnakeSize();
                 this.snakeLength++;
 
@@ -114,50 +133,63 @@ public class Snake {
                 f.moveFruit();
 
                 // for testing
-                //System.out.println("snake hit fruit");
+                //System.out.println("Snake hit fruit");
                 return false;
             }
         }
 
-        // checking if snake hit inner walls
+        // -- part two -- checking if Snake hit inner walls
         for (Wall w : walls) {
-            if (w.getWall().getLayoutY() == snake.get(0).getLayoutY() && w.getWall().getLayoutX() == snake.get(0).getLayoutX()) {
-
-                System.out.println("snake hit inner wall");
+            if (w.getWall().getLayoutY() == snake.get(0).getLayoutY() &&
+                    w.getWall().getLayoutX() == snake.get(0).getLayoutX()) {
+                // for testing
+                System.out.println("Snake hit inner wall");
                 return true;
             }
         }
 
-        // checking if snake hit screen walls
+        // -- part three -- checking if snake hit screen walls
         if (this.snakeHead.getLayoutX() <= -20 || this.snakeHead.getLayoutX() >= pane.getWidth() ||
                 this.snakeHead.getLayoutY() <= -20 || this.snakeHead.getLayoutY() >= pane.getHeight()) {
-
-            //System.out.println("Snake hit wall");
+            // for testing
+            System.out.println("Snake hit wall");
             return true;
         }
 
-        // checking if snake hit itself
+        // -- part four -- checking if Snake hit itself
         for (int i = 1; i < this.snakeLength; i++) {
             if (this.snake.get(i).getLayoutX() == this.snakeHead.getLayoutX() &&
                     this.snake.get(i).getLayoutY() == this.snakeHead.getLayoutY()) {
-
+                // for testing
                 //System.out.println("Snake hit itself");
                 return true;
             }
         }
 
+        // -- part five --
         return false;
     }
 
 
+    /**
+     * This method sets the Snake's isDead property.
+     *
+     * @param isDead boolean isDead
+     */
     public void setIsDead(Boolean isDead) {
         this.isDead = isDead;
     }
 
 
+    /**
+     * This method returns the Snake's isDead property.
+     *
+     * @return isDead
+     */
     public boolean getIsDead() {
         return isDead;
     }
+
 
     // private methods
 

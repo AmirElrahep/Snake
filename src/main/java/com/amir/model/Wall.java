@@ -1,11 +1,11 @@
 package com.amir.model;
 
-
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Random;
+
 
 /**
  * Wall class, represents a wall object
