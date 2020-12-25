@@ -187,19 +187,28 @@ public class PrimaryController implements Initializable {
             }
         }
 
-        // animation using AnimationTimer
-        AnimationTimer animationTimer = new AnimationTimer() {
 
-            private int frameCount = 0; // used to slow the animation down
-            private final int speedValue = 5; // calculates the frame value for the handle function
+        final int[] frameCount = {0};
+        int speedValue = 5; // Normal game mode speed
+
+        // if different game mode speed it selected, set speedValue value to corresponding integer
+        if (cbo_snakeSpeed.getValue().equals("Slow")) {
+            speedValue = 10;
+        } else if (cbo_snakeSpeed.getValue().equals("Fast")) {
+            speedValue = 3;
+        }
+
+        // animation using AnimationTimer
+        int finalSpeedValue = speedValue;
+        AnimationTimer animationTimer = new AnimationTimer() {
 
             @Override
             public void handle(long now) {
-                if (frameCount % speedValue == 0) {
+                if (frameCount[0] % finalSpeedValue == 0) {
                     // moves the Snake
                     snake.moveSnake(PrimaryController.currDirection);
                 }
-                frameCount++;
+                frameCount[0]++;
 
                 snake.collisionHandler(fruits, walls, pane_game);
 
