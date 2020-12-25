@@ -20,6 +20,12 @@ public class Wall {
     private static final Random rand = new Random();
 
 
+    /**
+     * This is the Wall constructor. Creates a Wall object that is represented by a Rectangle object.
+     * Takes a Color representing the wall color.
+     *
+     * @param color color of the Wall
+     */
     public Wall(Color color) {
         this.wall = new Rectangle();
         this.wallColor = color;
@@ -28,14 +34,30 @@ public class Wall {
     }
 
 
+    /**
+     * This method draws the Wall. It does this by adding the Wall to the pane.
+     *
+     * @param pane pane to draw the Wall on
+     */
     public void drawWall(Pane pane) {
         pane.getChildren().add(this.wall);
     }
 
+
+    /**
+     * This method erases the Wall. It does this by removing the Wall from the pane.
+     *
+     * @param pane pane to erase the Wall from
+     */
     public void eraseWall(Pane pane) {
         pane.getChildren().remove(this.wall);
     }
 
+
+    /**
+     * This method moves the Wall. Generates two numbers within the boundaries of the pane. Sets the LayoutX and
+     * LayoutY of the Wall to the new Location.
+     */
     public void moveWall() {
         int xPos = -1;
         int yPos = -1;
@@ -49,18 +71,25 @@ public class Wall {
         this.wall.setLayoutY(yPos);
     }
 
+
+    /**
+     * This method returns the Wall object.
+     *
+     * @return wall
+     */
     public Rectangle getWall() {
         return wall;
     }
 
+
     // private methods
 
+    /**
+     * This method creates the Wall object. Sets the Wall to a new Rectangle and calls the moveWall method.
+     */
     private void createWall() {
         this.wall = new Rectangle(20, 20, wallColor);
         moveWall();
     }
-
-
-
 
 }

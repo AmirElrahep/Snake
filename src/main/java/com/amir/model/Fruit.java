@@ -21,10 +21,10 @@ public class Fruit {
 
 
     /**
-     * This is the Fruit constructor. Creates a Fruit object this is represented by a Rectangle object.
-     * Takes in a color representing the fruit color.
+     * This is the Fruit constructor. Creates a Fruit object that is represented by a Rectangle object.
+     * Takes in a Color representing the fruit color.
      *
-     * @param color color of the fruit
+     * @param color color of the Fruit
      */
     public Fruit(Color color) {
         this.fruit = new Rectangle();
