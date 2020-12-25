@@ -2,8 +2,6 @@ package com.amir.controller;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 import com.amir.model.Fruit;
@@ -11,8 +9,6 @@ import com.amir.model.Snake;
 import com.amir.model.Wall;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.AnimationTimer;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ColorPicker;
@@ -20,10 +16,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 
 
 /**
@@ -95,8 +88,46 @@ public class PrimaryController implements Initializable {
     @FXML
     private ComboBox<String> cbo_snakeSpeed;
     @FXML
-    private ColorPicker cp_snakeColor = new ColorPicker();
+    private ColorPicker cp_snakeColor;
 
+
+    /**
+     * This declares and initializes the direction and score variable.
+     */
+    public static KeyCode currDirection = KeyCode.RIGHT;
+    public static int score = 0;
+
+
+    // private methods
+
+    /**
+     * This method erases the Snake, Fruits, and Walls from the pane by calling the respective erase method. Sets
+     * pane visibility for the pane_game and pane_gameOver. Sets the lbl_score Label. Sets the score variable to 0.
+     *
+     * @param snake  Snake
+     * @param fruits ArrayList of Fruit objects
+     * @param walls  ArrayList of Wall objects
+     */
+    private void quitGame(Snake snake, ArrayList<Fruit> fruits, ArrayList<Wall> walls) {
+        snake.eraseSnake(pane_game);
+
+        for (Fruit f : fruits) {
+            f.eraseFruit(pane_game);
+        }
+
+        for (Wall w : walls) {
+            w.eraseWall(pane_game);
+        }
+
+        pane_game.setVisible(false);
+        pane_gameOver.setVisible(true);
+        lbl_score.setText("Score: " + score);
+
+        score = 0;
+    }
+
+
+    // public methods
 
     /**
      * These are the methods when the Play Game, Start Game, Change Options, or Play Again buttons are pressed.
@@ -128,30 +159,26 @@ public class PrimaryController implements Initializable {
     }
 
 
-
-
-
-
-    // testing
-
-    public static KeyCode currDirection = KeyCode.RIGHT;
-    public static int score = 0;
-
+    /**
+     * This method represents the game loop. Creates the Snake, Fruit, and Wall objects and draws them the pane by
+     * calling the corresponding draw method. Uses an animation timer to move the Snake and and check for collisions.
+     * Depending on the game mode if a collision occurs, the animation timer is topped and the calls the quitGame method.
+     */
     public void startGameLoop() {
         currDirection = KeyCode.RIGHT;
 
-        // creating a snake and drawing it to the screen
+        // creating a Snake and drawing it to the pane
         Snake snake = new Snake(5, cp_snakeColor.getValue());
         snake.drawSnake(pane_game);
 
-        // creating an ArrayList of Fruits and drawing them to the screen
+        // creating an ArrayList of Fruits and drawing them to the pane
         ArrayList<Fruit> fruits = new ArrayList<>();
         for (int i = 0; i < cbo_numberOfFruit.getValue(); i++) {
             fruits.add(new Fruit(cp_fruitColor.getValue()));
             fruits.get(i).drawFruit(pane_game);
         }
 
-        // if game mode Walls is selected, creates an ArrayList of Walls and draws them to the screen
+        // if game mode Walls is selected, creates an ArrayList of Walls and draws them to the pane
         ArrayList<Wall> walls = new ArrayList<>();
         if (cbo_gameMode.getValue().equals("Walls")) {
             for (int i = 0; i < 25; i++) {
@@ -160,81 +187,42 @@ public class PrimaryController implements Initializable {
             }
         }
 
-
         // animation using AnimationTimer
         AnimationTimer animationTimer = new AnimationTimer() {
 
             private int frameCount = 0; // used to slow the animation down
             private final int speedValue = 5; // calculates the frame value for the handle function
 
-
             @Override
             public void handle(long now) {
-
-                // is user pressed ESC to quit
-                if (PrimaryController.currDirection.equals(KeyCode.ESCAPE)) {
-                    stop(); // stopping the animationTimer
-
-                    // erase the Snake, Fruit, and Walls
-                    snake.eraseSnake(pane_game);
-
-                    for (Fruit f : fruits) {
-                        f.eraseFruit(pane_game);
-                    }
-
-                    for (Wall w : walls) {
-                        w.eraseWall(pane_game);
-                    }
-
-                    // setting pane visibility and score
-                    pane_game.setVisible(false);
-                    pane_gameOver.setVisible(true);
-                    lbl_score.setText("Score: " + score);
-
-                    // resting score to 0
-                    score = 0;
-                }
-
-
-                if (frameCount % speedValue == 0) { // will only handle the next animation when frameCount is divisible by 4
-                    snake.moveSnake(PrimaryController.currDirection); // move snake forward
+                if (frameCount % speedValue == 0) {
+                    // moves the Snake
+                    snake.moveSnake(PrimaryController.currDirection);
                 }
                 frameCount++;
 
                 snake.collisionHandler(fruits, walls, pane_game);
 
+                // is user pressed ESC to quit
+                if (PrimaryController.currDirection.equals(KeyCode.ESCAPE)) {
+                    stop(); // stop the animationTimer
+                    quitGame(snake, fruits, walls);
+                }
+
                 // checking which game mode selection is made - this is for Normal and Walls game modes
                 if (cbo_gameMode.getValue().equals("Normal") || cbo_gameMode.getValue().equals("Walls")) {
                     snake.setIsDead(snake.collisionHandler(fruits, walls, pane_game));
+
                     if (snake.getIsDead()) {
                         stop(); // stopping the animationTimer
-
-                        // erase the Snake, Fruit, and Walls
-                        snake.eraseSnake(pane_game);
-
-                        for (Fruit f : fruits) {
-                            f.eraseFruit(pane_game);
-                        }
-
-                        for (Wall w : walls) {
-                            w.eraseWall(pane_game);
-                        }
-
-                        // setting pane visibility and score
-                        pane_game.setVisible(false);
-                        pane_gameOver.setVisible(true);
-                        lbl_score.setText("Score: " + score);
-
-                        // resting score to 0
-                        score = 0;
+                        quitGame(snake, fruits, walls);
                     }
                 }
             } // end handle
-        };
+        }; // end animationTimer
+
         animationTimer.start();
 
-
-        //pane_game.setFocusTraversable(true);
         pane_game.requestFocus();
         pane_game.setOnKeyPressed(event -> {
             PrimaryController.currDirection = event.getCode();
