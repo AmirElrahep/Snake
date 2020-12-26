@@ -18,9 +18,9 @@ import java.util.ArrayList;
 public class Snake {
 
     private final ArrayList<Rectangle> snake;
+    private final Color snakeColor;
     private int snakeLength;
     private Rectangle snakeHead;
-    private final Color snakeColor;
     private boolean isDead;
 
 
@@ -170,6 +170,14 @@ public class Snake {
         return false;
     }
 
+    /**
+     * This method returns the Snake's isDead property.
+     *
+     * @return isDead
+     */
+    public boolean getIsDead() {
+        return isDead;
+    }
 
     /**
      * This method sets the Snake's isDead property.
@@ -178,16 +186,6 @@ public class Snake {
      */
     public void setIsDead(Boolean isDead) {
         this.isDead = isDead;
-    }
-
-
-    /**
-     * This method returns the Snake's isDead property.
-     *
-     * @return isDead
-     */
-    public boolean getIsDead() {
-        return isDead;
     }
 
 

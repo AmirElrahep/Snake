@@ -234,7 +234,7 @@ public class PrimaryController implements Initializable {
 
         pane_game.requestFocus();
         pane_game.setOnKeyPressed(event -> {
-            // limit Snake direction to only three directions at a time
+            // limit Snake direction to only three directions at a time or if ESC is pressed
             if (event.getCode() == KeyCode.UP && !currDirection.equals(KeyCode.DOWN)) {
                 currDirection = KeyCode.UP;
             } else if (event.getCode() == KeyCode.DOWN && !currDirection.equals(KeyCode.UP)) {
