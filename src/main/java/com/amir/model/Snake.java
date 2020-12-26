@@ -201,16 +201,15 @@ public class Snake {
         Rectangle head = new Rectangle(20, 20, snakeColor);
         this.snake.add(head);
         this.snakeHead = snake.get(0);
-        snakeHead.setLayoutX(40);
-        snakeHead.setLayoutY(40);
-
+        snakeHead.setLayoutX(0);
+        snakeHead.setLayoutY(0);
 
         // creating the snake body
         for (int i = 1; i < snakeLength; i++) {
             Rectangle bodySegment = new Rectangle(20, 20);
             snake.add(bodySegment);
-            bodySegment.setLayoutX(40);
-            bodySegment.setLayoutY(40);
+            bodySegment.setLayoutX(0);
+            bodySegment.setLayoutY(0);
         }
     }
 
