@@ -243,6 +243,8 @@ public class PrimaryController implements Initializable {
                 currDirection = KeyCode.RIGHT;
             } else if (event.getCode() == KeyCode.LEFT && !currDirection.equals(KeyCode.RIGHT)) {
                 currDirection = KeyCode.LEFT;
+            } else if (event.getCode() == KeyCode.ESCAPE) {
+                currDirection = KeyCode.ESCAPE;
             }
         });
     }
