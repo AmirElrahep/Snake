@@ -105,31 +105,31 @@ public class App extends Application {
         MenuItem about = new MenuItem("About");
 
         howToPlay.setOnAction(ae -> {
-//            try {
-//                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("HowToPlay_Pane.fxml"));
-//                DialogPane newGameDialogPane = fxmlLoader.load();
-//
-//                Dialog<ButtonType> dialog = new Dialog<>();
-//                dialog.setDialogPane(newGameDialogPane);
-//                dialog.setTitle("How to play");
-//                dialog.showAndWait();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("HowToPlay_Pane.fxml"));
+                DialogPane newGameDialogPane = fxmlLoader.load();
+
+                Dialog<ButtonType> dialog = new Dialog<>();
+                dialog.setDialogPane(newGameDialogPane);
+                dialog.setTitle("How to play");
+                dialog.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         about.setOnAction(ae -> {
-//            try {
-//                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("About_Pane.fxml"));
-//                DialogPane newGameDialogPane = fxmlLoader.load();
-//
-//                Dialog<ButtonType> dialog = new Dialog<>();
-//                dialog.setDialogPane(newGameDialogPane);
-//                dialog.setTitle("About");
-//                dialog.showAndWait();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("About_Pane.fxml"));
+                DialogPane newGameDialogPane = fxmlLoader.load();
+
+                Dialog<ButtonType> dialog = new Dialog<>();
+                dialog.setDialogPane(newGameDialogPane);
+                dialog.setTitle("About");
+                dialog.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         // adding sub-menu buttons to main menu button

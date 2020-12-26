@@ -1,0 +1,33 @@
+/* variable definitions */
+* {
+    -fx-primary: #3B3F41;
+    -fx-secondary: #F1F1F1;
+    -fx-primarytext: #FFFFFF;
+    -fx-secondarytext: #000000;
+}
+
+.root {
+    -fx-background-color: -fx-primary;
+    -fx-font-family: ".SF NS Mono";
+}
+
+
+/* Application */
+.button {
+    -fx-background-color: -fx-primary;
+    -fx-background-radius: 10px;
+    -fx-border-color: -fx-secondary;
+    -fx-border-radius: 10px;
+    -fx-text-fill: -fx-primarytext;
+}
+
+.button:hover {
+    -fx-background-color: -fx-secondary;
+    -fx-border-color: -fx-secondary;
+    -fx-text-fill: -fx-secondarytext;
+}
+
+.label {
+    -fx-text-fill: -fx-primarytext;
+    -fx-font-family: ".SF NS Mono";
+}

@@ -87,7 +87,7 @@ public class Snake {
         this.snakeHead = this.snake.get(0);
 
         // for testing - prints the snake location
-        System.out.println("--- Snake Location ---\nX-Pos: " + snakeHead.getLayoutX() + "\nY-Pos: " + snakeHead.getLayoutY());
+        //System.out.println("--- Snake Location ---\nX-Pos: " + snakeHead.getLayoutX() + "\nY-Pos: " + snakeHead.getLayoutY());
     }
 
 
@@ -143,7 +143,7 @@ public class Snake {
             if (w.getWall().getLayoutY() == snake.get(0).getLayoutY() &&
                     w.getWall().getLayoutX() == snake.get(0).getLayoutX()) {
                 // for testing
-                System.out.println("Snake hit inner wall");
+                //System.out.println("Snake hit inner wall");
                 return true;
             }
         }
@@ -152,7 +152,7 @@ public class Snake {
         if (this.snakeHead.getLayoutX() <= -20 || this.snakeHead.getLayoutX() >= pane.getWidth() ||
                 this.snakeHead.getLayoutY() <= -20 || this.snakeHead.getLayoutY() >= pane.getHeight()) {
             // for testing
-            System.out.println("Snake hit wall");
+            //System.out.println("Snake hit wall");
             return true;
         }
 
