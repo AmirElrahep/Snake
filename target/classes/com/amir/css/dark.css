@@ -113,3 +113,8 @@ figure out color for the text on the color picker
 .color-palette .hyperlink, .color-palette .separator {
     visibility: hidden;
 }
+
+
+.color-picker .color-picker-label .text {
+    -fx-fill: -fx-primarytext;
+}
