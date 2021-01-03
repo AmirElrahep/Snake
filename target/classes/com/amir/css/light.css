@@ -5,6 +5,9 @@
     -fx-lightprimary: #DADAD9;
     -fx-primarytext: #000000;
     -fx-secondarytext: #FFFFFF;
+    /*
+     * #6893C6 blue color used
+     */
 }
 
 .root {
@@ -80,14 +83,6 @@
     -fx-font-size: 14;
 }
 
-/*
-.combo-box-base .arrow-button {
-    -fx-background-color: -fx-lightprimary;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
-}
-*/
-
 .combo-box .combo-box-popup .list-cell:hover {
     -fx-background-color: -fx-secondary;
     -fx-text-fill: -fx-secondarytext;
@@ -101,7 +96,11 @@
     -fx-text-fill: -fx-primarytext;
 }
 
-/* Removing the custom color option from the color picker*/
+.color-picker .color-picker-label .text {
+    -fx-fill: -fx-primarytext;
+}
+
+/* Removing the custom color option from the color picker */
 .color-palette .hyperlink, .color-palette .separator {
     visibility: hidden;
 }
