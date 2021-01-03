@@ -15,8 +15,8 @@ A modern desktop application of the classic Snake game.
 
 ## General Information
 
-This is a modern implementation of the classic game Snake. Unlike most Snake games, this provides different game
-options that enable the user to experience the game with a fresh perspective.
+This is a modern implementation of the classic game Snake. Unlike most Snake games, this provides different game options
+that enable the user to experience the game with a fresh perspective.
 
 Motivation behind the project was to make an elegant looking desktop application of the game Snake that provided
 customizable game modes.
@@ -34,6 +34,16 @@ customizable game modes.
 ![Start Pane](src/main/resources/com/amir/images/README%20images/options_pane.png)
 
 ## Features
+
+* Ability to change themes between Dark and Light mode
+* Informative How To Play instructions
+* Multiple game options
+    * Change game mode between Normal, Walls, or Free Play
+    * Change number of fruit
+    * Change fruit color
+    * Change snake speed
+    * change snake color
+* Ability to play again or change game options after the game is over
 
 ## Setup
 
