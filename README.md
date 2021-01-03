@@ -48,7 +48,7 @@ JFoenix - [JFoenix Download](https://github.com/jfoenixadmin/JFoenix)
 ### Installation
 
 1. Follow the download instructions for IntelliJ IDEA.
-2. Clone the project -
+2. Clone the project - https://github.com/AmirElrahep/Snake.git
 3. Navigate to the App class
 
    ```sh
