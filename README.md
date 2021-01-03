@@ -15,6 +15,12 @@ A modern desktop application of the classic Snake game.
 
 ## General Information
 
+This is a modern implementation of the classic game Snake. Unlike most Snake games, this provides different game
+options that enable the user to experience the game with a fresh perspective.
+
+Motivation behind the project was to make an elegant looking desktop application of the game Snake that provided
+customizable game modes.
+
 ### Built With
 
 * JavaFX
@@ -26,7 +32,6 @@ A modern desktop application of the classic Snake game.
 
 ![Start Pane](src/main/resources/com/amir/images/README%20images/start_pane.png)
 ![Start Pane](src/main/resources/com/amir/images/README%20images/options_pane.png)
-
 
 ## Features
 
