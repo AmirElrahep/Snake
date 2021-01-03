@@ -24,6 +24,10 @@ A modern desktop application of the classic Snake game.
 
 ## Screenshots and GamePlay
 
+![Start Pane](src/main/resources/com/amir/images/README%20images/start_pane.png)
+![Start Pane](src/main/resources/com/amir/images/README%20images/options_pane.png)
+
+
 ## Features
 
 ## Setup
