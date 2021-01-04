@@ -35,6 +35,7 @@ customizable game modes.
 ![Start Pane](src/main/resources/com/amir/images/README%20images/game_pane_play.png)  
 ![Start Pane](src/main/resources/com/amir/images/README%20images/game_play.gif)
 
+
 ## Features
 
 * Ability to change themes between Dark and Light mode
