@@ -25,7 +25,7 @@ import javafx.scene.paint.Color;
  * @author Amir Elrahep
  * @since 12-18-2020
  */
-public class PrimaryController implements Initializable {
+public class MainAppController implements Initializable {
 
     /**
      * These are the different anchor panes.
@@ -206,14 +206,14 @@ public class PrimaryController implements Initializable {
             public void handle(long now) {
                 if (frameCount[0] % finalSpeedValue == 0) {
                     // moves the Snake
-                    snake.moveSnake(PrimaryController.currDirection);
+                    snake.moveSnake(MainAppController.currDirection);
                 }
                 frameCount[0]++;
 
                 snake.collisionHandler(fruits, walls, pane_game);
 
                 // is user pressed ESC to quit
-                if (PrimaryController.currDirection.equals(KeyCode.ESCAPE)) {
+                if (MainAppController.currDirection.equals(KeyCode.ESCAPE)) {
                     stop(); // stop the animationTimer
                     quitGame(snake, fruits, walls);
                 }

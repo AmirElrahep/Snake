@@ -1,6 +1,6 @@
 package com.amir.model;
 
-import com.amir.controller.PrimaryController;
+import com.amir.controller.MainAppController;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -123,7 +123,7 @@ public class Snake {
         for (Fruit f : fruits) {
             if (f.getFruit().getLayoutY() == snake.get(0).getLayoutY() &&
                     f.getFruit().getLayoutX() == snake.get(0).getLayoutX()) {
-                PrimaryController.score++;
+                MainAppController.score++;
                 incrementSnakeSize();
                 this.snakeLength++;
 
