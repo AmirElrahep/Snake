@@ -48,7 +48,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         BorderPane rootPane = new BorderPane();
-        Parent content = loadFXML("Snake");
+        Parent content = loadFXML("view/Snake");
         rootPane.setCenter(content);
 
         Scene scene = new Scene(rootPane);
@@ -110,7 +110,7 @@ public class App extends Application {
 
         howToPlay.setOnAction(ae -> {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("HowToPlay_Pane.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/HowToPlay_Pane.fxml"));
                 DialogPane newGameDialogPane = fxmlLoader.load();
 
                 Dialog<ButtonType> dialog = new Dialog<>();
@@ -124,7 +124,7 @@ public class App extends Application {
 
         about.setOnAction(ae -> {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("About_Pane.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view/About_Pane.fxml"));
                 DialogPane newGameDialogPane = fxmlLoader.load();
 
                 Dialog<ButtonType> dialog = new Dialog<>();

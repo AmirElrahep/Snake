@@ -292,8 +292,3 @@ public class MainAppController implements Initializable {
     }
 
 }
-
-/*
- * Notes
- * - bug in code: sometimes fruit generates where the snake is
- */
