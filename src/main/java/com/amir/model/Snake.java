@@ -221,7 +221,7 @@ public class Snake {
         Rectangle oldHead = this.snakeHead;
         Rectangle newHead = this.snake.remove(this.snakeLength - 1);
         oldHead.setFill(snakeColor);
-        newHead.setFill(snakeColor);
+        newHead.setFill(snakeColor.darker().darker());
         newHead.setLayoutY((oldHead.getLayoutY() - 20) % 820);
         newHead.setLayoutX(oldHead.getLayoutX());
 
@@ -240,7 +240,7 @@ public class Snake {
         Rectangle oldHead = this.snakeHead;
         Rectangle newHead = this.snake.remove(this.snakeLength - 1);
         oldHead.setFill(snakeColor);
-        newHead.setFill(snakeColor);
+        newHead.setFill(snakeColor.darker().darker());
         newHead.setLayoutY((oldHead.getLayoutY() + 20) % 820);
         newHead.setLayoutX(oldHead.getLayoutX());
         this.snake.add(0, newHead);
@@ -254,7 +254,7 @@ public class Snake {
         Rectangle oldHead = this.snakeHead;
         Rectangle newHead = this.snake.remove(this.snakeLength - 1);
         oldHead.setFill(snakeColor);
-        newHead.setFill(snakeColor);
+        newHead.setFill(snakeColor.darker().darker());
         newHead.setLayoutX((oldHead.getLayoutX() + 20) % 1020);
         newHead.setLayoutY(oldHead.getLayoutY());
         this.snake.add(0, newHead);
@@ -268,7 +268,7 @@ public class Snake {
         Rectangle oldHead = this.snakeHead;
         Rectangle newHead = this.snake.remove(this.snakeLength - 1);
         oldHead.setFill(snakeColor);
-        newHead.setFill(snakeColor);
+        newHead.setFill(snakeColor.darker().darker());
         newHead.setLayoutX((oldHead.getLayoutX() - 20) % 1020);
         newHead.setLayoutY(oldHead.getLayoutY());
 
