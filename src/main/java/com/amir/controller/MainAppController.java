@@ -2,6 +2,7 @@ package com.amir.controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import com.amir.model.Fruit;
@@ -93,9 +94,11 @@ public class MainAppController implements Initializable {
 
     /**
      * This declares and initializes the direction and score variable.
+     * Creates a new Random object to be used for randomizing the game options.
      */
     public static KeyCode currDirection = KeyCode.RIGHT;
     public static int score = 0;
+    private final Random rand = new Random();
 
 
     // private methods
@@ -156,6 +159,19 @@ public class MainAppController implements Initializable {
         pane_game.setVisible(true);
 
         startGameLoop();
+    }
+
+
+    /**
+     * This method generates random game options by using the random object to generate a random number based off of
+     * the number of available choices for a certain option.
+     */
+    public void btnRandomizePressed() {
+        cbo_gameMode.getSelectionModel().select(rand.nextInt(cbo_gameMode.getItems().size()));
+        cbo_numberOfFruit.getSelectionModel().select(rand.nextInt(cbo_numberOfFruit.getItems().size()));
+        cp_fruitColor.setValue(Color.rgb(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        cbo_snakeSpeed.getSelectionModel().select(rand.nextInt(cbo_snakeSpeed.getItems().size()));
+        cp_snakeColor.setValue(Color.rgb(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
     }
 
 

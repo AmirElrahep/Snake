@@ -72,6 +72,21 @@
     -fx-text-fill: -fx-secondarytext;
 }
 
+.randomize-button {
+    -fx-background-color: -fx-primary;
+    -fx-background-radius: 10px;
+    -fx-border-color: -fx-secondary;
+    -fx-border-radius: 10px;
+    -fx-text-fill: -fx-primarytext;
+    -fx-font-size: 13pt;
+}
+
+.randomize-button:hover {
+    -fx-background-color: -fx-secondary;
+    -fx-border-color: -fx-secondary;
+    -fx-text-fill: -fx-secondarytext;
+}
+
 .label {
     -fx-font-family: ".SF NS Mono";
 }
