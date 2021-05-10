@@ -19,6 +19,7 @@
 /* Menu bar */
 .menu-bar {
     -fx-background-color: -fx-primary;
+    -fx-border-color: #cbcbcb;
     -fx-base: -fx-primary;
     -fx-font-size: 14;
 }
