@@ -35,7 +35,7 @@ public class HowToPlay_Controller implements Initializable {
                 "\n" +
                 "The difficulty lies in that as the snake gets larger it is harder for the snake to remain alive as the chances of biting itself increase. \n" +
                 "\n" +
-                "Different game options include Normal, Walls, and Free Play game modes. The ability to select the amount of fruit displayed at a time. The ability to change the color of the snake and the fruit. The speed of the snake.");
+                "Different game options include Normal, Walls, and Free Play game modes. The ability to select the amount of fruit displayed at a time. The ability to change the color of the snake and the fruit. The ability to change the speed of the snake.");
     }
 
 }
