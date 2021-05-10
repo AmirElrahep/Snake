@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane prefHeight="450.0" prefWidth="550.0" stylesheets="@../css/dialog.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.amir.controller.HowToPlay_Controller">
+<DialogPane prefHeight="475.0" prefWidth="550.0" stylesheets="@../css/dialog.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.amir.controller.HowToPlay_Controller">
    <buttonTypes>
       <ButtonType fx:constant="OK" />
    </buttonTypes>
