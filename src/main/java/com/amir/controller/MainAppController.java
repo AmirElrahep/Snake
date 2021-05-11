@@ -281,15 +281,16 @@ public class MainAppController implements Initializable {
         pane_gameOver.setVisible(false);
 
         // setting colors for labels in the application
-        lbl_snake.setTextFill(Color.rgb(104, 147, 198));
-        lbl_gameOptions.setTextFill(Color.rgb(104, 147, 198));
-        lbl_gameMode.setTextFill(Color.rgb(104, 147, 198));
-        lbl_numberOfFruit.setTextFill(Color.rgb(104, 147, 198));
-        lbl_fruitColor.setTextFill(Color.rgb(104, 147, 198));
-        lbl_snakeSpeed.setTextFill(Color.rgb(104, 147, 198));
-        lbl_snakeColor.setTextFill(Color.rgb(104, 147, 198));
-        lbl_gameOver.setTextFill(Color.rgb(104, 147, 198));
-        lbl_score.setTextFill(Color.rgb(104, 147, 198));
+        Color labelColor = Color.rgb(104, 147, 198);
+        lbl_snake.setTextFill(labelColor);
+        lbl_gameOptions.setTextFill(labelColor);
+        lbl_gameMode.setTextFill(labelColor);
+        lbl_numberOfFruit.setTextFill(labelColor);
+        lbl_fruitColor.setTextFill(labelColor);
+        lbl_snakeSpeed.setTextFill(labelColor);
+        lbl_snakeColor.setTextFill(labelColor);
+        lbl_gameOver.setTextFill(labelColor);
+        lbl_score.setTextFill(labelColor);
         lbl_score.setText("Score: ");
 
         // setting up combobox choices and default selections
@@ -304,7 +305,7 @@ public class MainAppController implements Initializable {
         cbo_snakeSpeed.getItems().addAll("Slow", "Normal", "Fast");
         cbo_snakeSpeed.setValue("Normal");
 
-        cp_snakeColor.setValue(Color.rgb(104, 147, 198));
+        cp_snakeColor.setValue(labelColor);
     }
 
 }
