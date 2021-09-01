@@ -78,7 +78,7 @@ public class MainAppController implements Initializable {
 
 
     /**
-     * These are the comboboxes for the application.
+     * These are the combo boxes for the application.
      */
     @FXML
     private ComboBox<String> cbo_gameMode;
@@ -177,7 +177,7 @@ public class MainAppController implements Initializable {
 
     /**
      * This method represents the game loop. Creates the Snake, Fruit, and Wall objects and draws them the pane by
-     * calling the corresponding draw method. Uses an animation timer to move the Snake and and check for collisions.
+     * calling the corresponding draw method. Uses an animation timer to move the Snake and check for collisions.
      * Depending on the game mode if a collision occurs, the animation timer is topped and the calls the quitGame method.
      */
     public void startGameLoop() {
