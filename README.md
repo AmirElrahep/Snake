@@ -33,7 +33,7 @@ customizable game modes.
 ![Start Pane](src/main/resources/com/amir/images/README%20images/start_pane.png)
 ![Options Pane](src/main/resources/com/amir/images/README%20images/options_pane.png)
 ![Game_Play Pane](src/main/resources/com/amir/images/README%20images/game_pane_play.png)
-![Game Play](src/main/resources/com/amir/images/README%20images/game_play.gif)
+![Game Play](src/main/resources/com/amir/images/README%20images/gameplay.gif)
 
 ## Features
 
