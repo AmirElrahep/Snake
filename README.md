@@ -6,7 +6,7 @@ A modern desktop application of the classic Snake game.
 
 * [General Information](#general-information)
     * [Built With](#built-with)
-* [Screenshots and GamePlay](#screenshots-and-GamePlay)
+* [Screenshots and Gameplay](#screenshots-and-Gameplay)
 * [Features](#features)
 * [Setup](#setup)
     * [Prerequisites & Useful Links](#prerequisites--useful-links)
@@ -28,7 +28,7 @@ customizable game modes.
 * CSS
 * Maven
 
-## Screenshots and GamePlay
+## Screenshots and Gameplay
 
 ![Start Pane](src/main/resources/com/amir/images/README%20images/start_pane.png)
 ![Options Pane](src/main/resources/com/amir/images/README%20images/options_pane.png)
